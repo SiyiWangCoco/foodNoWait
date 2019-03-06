@@ -1,0 +1,113 @@
+ @charset "utf-8";
+/* CSS Document */
+* {
+    margin:0;
+    padding:0;
+    font-family: Arial
+}
+
+body {
+    background:#fce8ea;
+    font-size: 14px;
+}
+
+.container {
+    padding: 0 20px;
+    width: 1000px;
+    margin: 40px auto 0;
+}
+
+.menu {
+    float: right;
+    padding: 30px;
+}
+.menu a {
+    color: #f60;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+#preview {
+    width: 150px;
+    height: 120px;
+    position: relative;
+    background: url(../picture/upload.png);
+    background-size: 150px 120px;
+    float: right;
+    top: 150px;
+    border: 1px solid black;
+    right: 50px;
+}
+#file {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.detailInfo {
+    clear: both;
+    background: #fff;
+    padding:30px;
+}
+.detailInfo p {
+    color: #333;
+    line-height: 30px;
+    margin: 0 0 20px 0
+}
+.detailInfo label {
+    display: inline-block;
+    width: 160px;
+    text-align: right;
+    padding-right: 20px;
+}
+.detailInfo textarea {
+    height: 100px;
+    width: 300px;
+    padding: 10px;
+}
+.detailInfo input {
+    padding: 5px;
+    width: 140px;
+}
+
+.title-b {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.btnBox {
+    text-align: center;
+}
+.textBtn {
+    background: #f60;
+    color: #fff;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 4px;
+}
+
+#result {
+    background: #f2f2f2;
+    padding: 20px;
+}
+#result div {
+    margin: 10px 0;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0
+}
+#result em {
+    margin-left: 10px;
+    display: inline-block;
+    width: 160px;
+    text-align: right;
+    font-style: normal;
+    margin-right: 10px;
+    color: #666
+}

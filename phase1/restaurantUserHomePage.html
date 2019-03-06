@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+ <head>
+ 	<meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+ </head>
+
+ <body>
+ 	
+ 	<!-- The restaurant User Homepage page -->
+     
+     <div id="restaurantInfomaton">
+        <div class="resurantImage">
+            <h4> Restaurant Image </h4>
+            <input class="currentImage" type="image" src="picture/SichuanRenHotpot.png">
+        </div>    
+        <div class="resMainInfo">
+            <h4>Restaurant Info</h4>
+            <div class="resurantName">
+                <strong>Restaurant Name: </strong>
+                <input placeholder="Sichuan Ren Hotpot"/>
+            </div>
+            <div class="restaurantAddress">
+                <strong>Address: </strong>
+                <input placeholder="460 Dundas Street West"/>
+            </div>
+            <div class="phone">
+                <strong>Phone: </strong>
+                <input placeholder="6473418080"/>
+            </div>
+            <div class="restaurantType">
+                <strong>Type: </strong>
+		        <select>
+                    <option value ="chineseFood">Chinese Food</option>
+                    <option value ="seaFoodSteak">Sea Food & Steak</option>
+                    <option value="dessert">Dessert</option>
+		        </select>
+            </div>
+            <button class="submit"> SUBMIT </button>  
+        </div>
+ 	</div>
+    <div id=status>
+        <div>
+            <h4>Waiting Status</h4>
+            <p>
+                <span> Small Table: current:
+                <button id="restaurantUserSmall">A<span id="smallNumber">7</span></button>
+                </span>
+                <span> Total waiting parties:   
+                    <strong id="restaurantUserSmallNumber"> 2 </strong>
+                </span>
+                <span><button id="restaurantUserSmallPlus">Get In Line </button></span>
+            </p>
+            <p>
+                <span> Medium Table: current:
+                    <button id="restaurantUserMedium">B<span id="mediumNumber">6</span></button>
+                    </span>
+                <span> Total waiting parties: 
+                    <strong id="restaurantUserMediumNumber"> 1 </strong>
+                </span>
+                <span><button id="restaurantUserMediumPlus">Get In Line </button></span>
+            </p>
+            <p>
+                <span> Large Table: current:
+                    <button id="restaurantUserLarge">C<span id="largeNumber">9</span></button>
+                </span>
+                <span> Total waiting parties: 
+                    <strong id="restaurantUserLargeNumber"> 2 </strong>
+                </span>
+                <span><button id="restaurantUserLargePlus">Get In Line </button></span>
+                </p>
+        </div>
+        <div>
+            <h4>Reservation Aviliable</h4>
+            <input id="reservationName" type="text" placeholder="name">
+            <input id="reservationPhone" type="text" placeholder="phone"> 
+            <button class="timeSlot">10:00 PM</button>
+            <button class="timeSlot">11:00 PM</button>
+        </div>
+        <div id="currentReservation">
+            <h4>Current Reservation </h4>
+            <div class="res">
+                <p> <span>6:00 PM: Mr.Jerry Phone Number: 6471234567</span>
+                    <button class="complete"> Complete </button>
+                    <button class="Cancel"> Cancel </button>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/functions.js"></script>
+ </body>
+</html>
