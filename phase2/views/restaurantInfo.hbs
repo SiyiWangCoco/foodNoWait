@@ -1,0 +1,73 @@
+<div id="restaurantInfo">
+	<span id="resName">
+		<strong>{{resName}}</strong>
+	</span>
+	<span id="resAdd">{{resAdd}}</span>
+	<span id="phone">{{resPhone}}</span>
+	<span id="resScore">{{resStar}}</span>
+</div>
+
+<div id="resImage">
+	<img class="image" src={{resImg}}>
+</div>
+
+<div id="reserInfo">
+	<div id="reservation">
+		<div id="reserTitle">Reservation: </div>
+		<div id="reserDate">
+			Today<input id="today" type="radio" name="date">
+			Tomorrow<input id="tomorrow" type="radio" name="date">
+		</div>
+		<br>
+		<div id="reserTime">
+			<button class="time">14:00</button>	
+			<button class="time">18:00</button>	
+			<button class="time">19:00</button>	
+			<button class="time">20:00</button>	
+			<button class="time">21:00</button>	
+		</div>
+	</div>
+
+	<div id="line">
+		<div id="lineTitle">Current In Line</div>
+		<div id="lineInfo">
+			<span class="tableInfo">
+				Small table(1-2)
+				<div id="smallTableNum">1</div>
+				<input id="small" type="radio" name="table">
+			</span>
+			<span class="tableInfo">
+				Medium table(3-5)
+				<div id="mediumTableNum">3</div>
+				<input id="medium" type="radio" name="table">
+			</span>
+			<span class="tableInfo">
+				Large table(5+)
+				<div id="largeTableNum">4</div>
+				<input id="large" type="radio" name="table">
+			</span>
+		</div>
+		<br>
+		<div id="getInLine"><button>Get in Line</button></div>
+	</div>
+</div>
+
+<br>
+<br>
+
+<div id="comments">
+	<div id="commentsHis">
+		{{#each comments}}
+		<div class="userComment">
+			<span class="user">{{this.commentUserid}}: </span>
+			<span class="commentText">{{this.commentInfo}}</span>
+		</div>
+		{{/each}}
+	</div>
+	<div id="leaveComment">
+		<input id="message" type="text" placeholder="Leave Your Comments HERE!!!!">
+		<br>
+		<input id="submitButton" type="submit" value="Submit">
+	</div>
+</div>
+<script type="text/javascript" src="js/restaurantInfo.js"></script>

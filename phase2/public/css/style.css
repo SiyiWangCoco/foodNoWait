@@ -1,3 +1,10 @@
+
+body {
+    background-color: #f8e3e3;
+    background-size: cover;
+
+}
+
 #homepageTop {
 	margin-left: 80px;
 }
@@ -49,7 +56,7 @@
 
 .restaurantList {
 	margin-left: 25px;
-	margin-top: 80px;
+    margin-top: 80px;
 }
 
 .restaurantList h1 {
@@ -58,7 +65,7 @@
     border-bottom: 5px solid black;
 }
 
-.restaurantList a {
+.restaurantList .seeMore {
 	font-family: "Comic Sans MS";
 	width: 330px;
 	font-size: 30px;
@@ -66,12 +73,12 @@
 	font-weight: bold;
 	display: inline-block;
 	margin-left: 50px;
-	margin-top: 120px;
-	text-align: left;
-	position: absolute;
+	margin-top: 50px;
+    text-align: left;
+    
 }
 
-.restaurants input {
+.restaurantsInList input {
 	height: 200px;
 	width: 300px;
 }
@@ -85,13 +92,13 @@
 	float: right;
 }
 
-.restaurants .restaurant {
+.restaurantsInList .restaurant {
 	margin-left: 40px;
 	display: inline-block;
 }
 
-.restaurants {
-	margin-left: -40px;
+.restaurantsInList {
+	margin-left: -25px;
 }
 
 .restaurantList #relevantTitle {
@@ -117,9 +124,6 @@
 	top: 113px;
 }
 
-body {
-	background-color: #f8e3e3;
-}
 
 
 #header {
@@ -149,6 +153,7 @@ body {
     position: absolute;
     top: 23px;
     font-weight: bold;
+    left: 110px;
 }
 
 .FoodNoWaitLogo {

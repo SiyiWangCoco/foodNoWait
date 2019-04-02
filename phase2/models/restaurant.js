@@ -23,6 +23,10 @@ const RestaurantSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
+    restaurantImage: {
+        data: Buffer, 
+        contentType: String 
+    },
     description: String,
   	star: {
         type: Number,
