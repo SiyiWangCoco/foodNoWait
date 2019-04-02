@@ -17,8 +17,6 @@ const port = process.env.PORT || 3000
 const app = express();
 
 const indexRouter = require('./routes/index')
-const signupRouter = require('./routes/signupRoute')
-// const signinRouter = require('./routes/signinRoute')
 const restaurantsRouter = require('./routes/restaurants')
 // const usersRouter = require('./routes/users')
 // const adminRouter = require('./routes/admin')
@@ -51,8 +49,6 @@ app.set( 'view engine', 'hbs' );
 app.use(bodyParser.json());
 
 app.use('/', indexRouter)
-app.use('/signup', signupRouter)
-// app.use('/signin', signinRouter)
 app.use('/restaurant', restaurantsRouter)
 // app.use('/user', usersRouter)
 // app.use('/admin', adminRouter)
