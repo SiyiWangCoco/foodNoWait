@@ -1,0 +1,631 @@
+#homepageTop {
+	margin-left: 80px;
+}
+
+#homeImage {
+	height: 300px;
+	position: absolute;
+	left: 950px; 
+	top: 120px;
+
+}
+
+.searchBar {
+	width: 850px;
+	background-color: white;
+}
+
+.homeTitle {
+	font-size: 70px;
+	font-family: "Comic Sans MS";
+}
+
+.searchSubmit {
+	left: 850px;
+	width: 70px;
+	height: 70px;
+	top: 265px;
+	position: absolute;
+}
+
+.searchSubmit:active {
+	top: 268px;
+}
+
+.searchContent {
+	border: 0;
+	height: 80px;
+	width: 400px;
+	margin-left: 40px;
+	font-size: 35px;
+	color: #ff6064;
+	font-family: "Comic Sans MS";
+
+}
+
+.searchContent::placeholder {
+	color: #ff6064;
+}
+
+.restaurantList {
+	margin-left: 25px;
+	margin-top: 80px;
+}
+
+.restaurantList h1 {
+	font-family: "Comic Sans MS";
+	width: 330px;
+    border-bottom: 5px solid black;
+}
+
+.restaurantList a {
+	font-family: "Comic Sans MS";
+	width: 330px;
+	font-size: 30px;
+	color:black;
+	font-weight: bold;
+	display: inline-block;
+	margin-left: 50px;
+	margin-top: 120px;
+	text-align: left;
+	position: absolute;
+}
+
+.restaurants input {
+	height: 200px;
+	width: 300px;
+}
+
+.restaurantInfo {
+	font-family: "Comic Sans MS";
+	font-weight: bold;
+}
+
+.restaurantInfo span {
+	float: right;
+}
+
+.restaurants .restaurant {
+	margin-left: 40px;
+	display: inline-block;
+}
+
+.restaurants {
+	margin-left: -40px;
+}
+
+.restaurantList #relevantTitle {
+	font-family: "Comic Sans MS";
+	width: 350px;
+    border-bottom: 5px solid black;
+}
+
+#searchTop {
+	margin-top: 40px;
+	margin-left: 40px;
+}
+
+#searchTop .searchSubmit {
+	left: 800px;
+	width: 70px;
+	height: 70px;
+	top: 110px;
+	position: absolute;
+}
+
+#searchTop .searchSubmit:active {
+	top: 113px;
+}
+
+body {
+	background-color: #f8e3e3;
+}
+
+
+#header {
+	padding: 5px;
+    background-color: #f8e3e3;
+    height: 50px;
+    
+}
+
+#logo {
+    margin-left: 10px;
+    float: left;
+    background-color: transparent;
+}
+
+#logo button{
+	margin-left: 30px;
+	border: none;
+	background-color: transparent;
+}
+
+#logo a{
+    color: #ff6064;
+    font-family: fantasy;
+    font-size: 30px;
+    text-decoration: none;
+    position: absolute;
+    top: 23px;
+    font-weight: bold;
+}
+
+.FoodNoWaitLogo {
+	width: 45px;
+}
+
+.buttonMenu {
+    float: right;
+    margin-right: 40px;
+}
+.buttonMenu a {
+	background-color: transparent;
+	font-size: 18px;
+	font-weight: bold;
+	border:none;
+	color: #ff6064;
+    margin-right: 10px;
+    font-family: "Comic Sans MS";
+    text-decoration: none;
+
+}
+
+.loginButton {
+    width: 30px;
+    top: 2px;
+}
+
+#searchClass {
+	margin-top: 40px;
+	margin-left: 40px;
+}
+
+#searchClass button {
+	font-weight: bold;
+	font-family: "Comic Sans MS";
+	font-size: 100%;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	margin-right: 40px;
+}
+
+#searchClass .special {
+	padding-bottom: 25px;
+}
+
+#signInPicture {
+    float: left;
+    margin-left: 80px;
+    margin-top: 60px;
+    width: 450px;
+  }
+
+#userInfo {
+    float: right;
+    margin-top: 60px;
+    width: 600px;
+    font-family: "Comic Sans MS";
+    margin-right: 120px;
+}
+  
+#userInfo h1 {
+    font-size: 50px;
+    text-align: center;
+}
+
+#userInfo strong {
+    font-size: 30px;
+}
+
+.userName {
+    padding-top: 10px;
+}
+
+#userInfo input {
+    font-size: 30px;
+    font-family: "Comic Sans MS";
+    width: 300px;
+}
+
+.password {
+    padding-top: 20px;
+}
+
+.login {
+    margin-left: 40px;
+    text-decoration: none;
+    font-size: 40px;
+    height: 60px;
+    font-weight: bold;
+    margin-top:40px;
+    background-color: #ffc1c1;
+    width: 400px;
+    color: black;
+    border-radius: 10px;
+    font-family: "Comic Sans MS";
+}
+
+.notUser {
+    margin-top: 30px;
+}
+
+.notUser  a {
+    font-size: 30px;
+    font-weight: bold;
+    width: 400px;
+    color: black;  
+}
+
+#signUp {
+    margin-top: 100px;
+    width: 1000px;
+    font-family: "Comic Sans MS";
+    margin-right: 70px;
+}
+  
+#signUp .title {
+    font-size: 50px;
+    text-align: center;
+    margin-left: 450px;
+}
+
+.mainInfo {
+    position: absolute;
+    margin-left: 20px;
+}
+
+.restInfomation {
+    position: absolute;
+    margin-left: 600px;
+}
+
+#signUp strong {
+    font-size: 24px;
+    display:inline-block;
+    width:330px;
+    text-align:right;
+}
+
+#signUp input {
+    font-size: 30px;
+    margin-top: 20px;
+    font-family: "Comic Sans MS";
+}
+
+
+.submit {
+    margin-left: 500px;
+    text-decoration: none;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top:40px;
+    background-color: #ffc1c1;
+    width: 400px;
+    color: black;
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+}
+
+
+.signupSubmit {
+    position: absolute;
+    top: 600px;
+    margin-left: 600px;
+    text-decoration: none;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top:40px;
+    background-color: #ffc1c1;
+    width: 300px;
+    color: black;
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+}
+.userType select{
+    border: none;
+    outline: none;
+    width: 150px;;
+    height: 30px;
+    line-height: 20px;
+    appearance: none;
+    background: transparent;
+    font-family: "Comic Sans MS";
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.gender select{
+    border: none;
+    outline: none;
+    width: 150px;;
+    height: 30px;
+    line-height: 20px;
+    appearance: none;
+    background: transparent;
+    font-family: "Comic Sans MS";
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+#restaurantInfomaton {
+    margin-top: 20px;
+    width: 1000px;
+    font-family: "Comic Sans MS";
+    margin-right: 70px;
+    height: 250px;
+}
+  
+#restaurantInfomaton h4 {
+    font-size: 25px;  
+}
+
+.resurantImage {
+    float: left;
+    margin-left: 60px;
+}
+
+.resurantImage .currentImage {
+    width: 230px;
+}
+
+.resMainInfo {
+    float: right;
+    margin-right: 10px;
+}
+.resMainInfo h4 {
+    margin-left: 190px;
+}
+.resMainInfo strong {
+    font-size: 20px;
+    display:inline-block;
+    width:300px;
+    text-align:right;
+    cursor: pointer;
+}
+
+.resMainInfo input {
+    font-size: 20px;
+    margin-top: 5px;
+    width: 300px;
+    font-family: "Comic Sans MS";
+    display:inline-block;
+
+}
+
+.submit {
+    margin-left: 400px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top:40px;
+    background-color: #ffc1c1;
+    width: 150px;
+    color: black;
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.resMainInfo input::placeholder { 
+    color: black;
+    font-family:  "Comic Sans MS";
+  }
+ 
+
+#status {
+    margin-top: 100px;
+    font-family: "Comic Sans MS";
+    margin-left: 60px;
+}
+  
+#status h4 {
+    font-size: 25px;  
+}
+
+#adminRestaurantInfomaton {
+    width: 1800px;
+}
+.waitingStatus {
+    margin-right: 50px;
+}
+.waitingStatusTitle{
+    font-weight: bold;
+    font-size:18px;
+}
+
+.resurantNameAdmin {
+    font-weight: bold;
+    font-size:18px;
+}
+#currentReservationAdmin p {
+    margin: 0px;
+    margin-left: 50px;
+}
+.restaurants {
+    margin-left: 20px;
+}
+
+.restaurants h3{
+    margin: 0px;
+    margin-top: 10px;
+}
+
+*:focus {
+	outline: none;
+}
+
+#reserInfo button {
+    background-color: pink;
+    border: none;
+    padding: 10px 21px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+#webLogo {
+    width: 60%;
+    height: 100px;
+    float: left;
+}
+
+#linkButtons {
+    width: 40%;
+    height: 100px;
+    font-size: 130%;
+    float: right;
+    text-align: right;
+}
+
+#logout {
+    width: 30px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#restaurantInfo {
+    margin-left: 20px;
+
+}
+
+#resName {
+    font-size: 200%;
+}
+
+#resAdd {
+    margin-left: 60px;
+    font-size: 150%;
+}
+
+#phoneNumber {
+    margin-left: 60px;
+    font-size: 150%;
+}
+
+#resScore {
+    margin-right: 50px;
+    font-size: 150%;
+    float: right;
+}
+
+#resImage {
+    margin-top: 40px;
+    margin-left: 20px;
+    float: left;
+}
+
+.image {
+    width: 250px;
+    height: 200px;
+}
+
+
+#reserInfo {
+    margin-top: 40px;
+    margin-left: 40px;
+    display: inline-block;
+}
+
+#reservation {
+    border-bottom: 2px solid black;
+}
+
+#reserTitle {
+    font-size: 160%;
+    font-weight: bolder;
+    float: left;
+}
+
+#reserTime {
+    margin-left: 30px;
+    display: inline-block;
+}
+
+#reserDate {
+    margin-top: 10px;
+    margin-left: 30px;
+    font-size: 120%;
+    display: inline-block;
+}
+
+#seeMoreTime {
+    margin-right: 30px;
+    margin-bottom: 10px;
+    display: grid;
+}
+
+#line {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#lineTitle {
+    font-weight: bolder;
+    font-size: 150%;
+}
+
+#lineInfo {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.tableInfo {
+    font-weight: bold;
+    font-size: 120%;
+    margin: 0 20px;
+}
+
+#smallTableNum{
+    text-align: center;
+}
+
+#mediumTableNum{
+    text-align: center;
+}
+
+#largeTableNum{
+    text-align: center;
+}
+
+#commentsHis {
+    margin-bottom: 10px;
+}
+
+.userComment {
+    background-color: white;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+#leaveComment {
+    text-align: center; 
+}
+
+#message {
+    height: 100px;
+    width: 99%;
+    font-size: 150%;
+}
+
+#submitButton {
+    background-color: pink;
+    border: none;
+    padding: 10px 21px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+}

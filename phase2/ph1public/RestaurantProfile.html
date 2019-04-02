@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Restaurant Profile</title>
+    <link rel="stylesheet" type="text/css" href="css/UserProfile.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+<body>
+    <div class="container">
+        <div>
+			<div id="preview">
+				<input type="file" accept="image/*" id="file"/>
+			</div>
+            <div class="detailInfo">
+                <p><label>Username:</label><input type="text" value="user2" disabled="disabled" id="username"></p>
+                <p><label>Account Type:</label><input type="text" value="Restaurant" disabled="disabled" id="accountType"></p>
+                <p><label>Restaurant Name:</label><input name="" type="text" value="Sichuan Ren Hotpot" id="restaurantName"></p>
+                <p><label>Address:</label><input name="" type="text" value="460 Dundas Street West" id="address"></p>
+                <p><label>Email:</label><input name="" type="text" id="email"></p>
+                <p><label>Phone:</label><input name="" type="text" value="(647) 341-8080" id="phone"></p>
+                <p><label>Description:</label><textarea placeholder="optional" id="description"></textarea></p>
+                <h2 class="title-b">Change Password</h2>
+                <p><label>Old Password:</label><input type="text" id="oldPassword"></p>
+                <p><label>New Password:</label><input type="text" id="newPassword"></p>
+                <p><label>Confirm Password:</label><input type="text" id="confirmPassword"></p>
+                <div class="btnBox">
+					<input type="hidden" id="password" value="user2">
+                    <input type="submit" id="button" value="Submit" class="textBtn">
+                </div>
+            </div>
+            <div id="result">
+                
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/RestaurantProfile.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+	
+</body>
+</html>
