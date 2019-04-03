@@ -1,0 +1,25 @@
+{{> header }}
+<div id="signin">
+<img id="signInPicture" src="../../picture/signinpic.png">
+<div id="userInfo">
+    <h1 class="title">SIGN IN</h1>
+    <form action="/users/signin" method="post">
+        <div id="userName">
+            <strong>USERNAME: </strong>
+            <input id="userNameInput" name="userNameInput" type="text">
+        </div>
+        <div id="password">
+            <strong>PASSWORD: </strong>
+            <input id="userPasswordInput" name="userPasswordInput" type="password">
+        </div>
+        <button type="submit" id="login">LOGIN</button>
+    </form>
+    <div class="notUser">
+        Not our user yet?
+        <br>
+        <a href="/signup/customer">SIGN UP AS CUSTOMER USER</a>
+        <br>
+        <a href="/signup/restaurant">SIGN UP AS RESTAURANT USER</a>
+        
+    </div>
+</div>

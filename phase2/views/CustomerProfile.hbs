@@ -1,0 +1,46 @@
+{{> headerUser }}
+<head>
+    <meta charset="utf-8">
+    <title>Customer Profile</title>
+    <link rel="stylesheet" type="text/css" href="../css/UserProfile.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+</head>
+<body>
+    <div class="container">
+        <div id="preview">
+            <input type="file" accept="image/*" id="file"/>
+        </div>
+        <div class="detailInfo">
+            <p><label>Username:</label><input type="text" disabled="disabled" id="username"></p>
+            <p><label>Account Type:</label><input type="text" disabled="disabled" id="accountType"></p>
+            <p><label>First Name:</label><input type="text" id="firstName"></p>
+            <p><label>Last Name:</label><input type="text" id="lastName"></p>
+            <p><label>Email:</label><input type="text" id="email"></p>
+            <p>
+                <label>Gender:</label>
+                <select id="gender">
+                    <option id="genderF">female</option>
+                    <option id="genderM">male</option>
+                    <option id="genderO">other</option>
+                    <option id="genderU">not applicable</option>
+                </select>
+            </p>
+            <p><label>Age:</label><input type="text" id="age"></p>
+            <p><label>Phone:</label><input type="text" id="phone"></p>
+            <p><label>Description:</label><textarea placeholder="optional" id="description"></textarea></p>
+            <div class="btnBox">
+                <input type="submit" id="infoButton" value="Submit" class="textBtn">
+            </div>
+            <h2 class="title-b">Change Password</h2>
+            <p><label>Old Password:</label><input type="password" id="oldPassword"></p>
+            <p><label>New Password:</label><input type="password" id="newPassword"></p>
+            <p><label>Confirm Password:</label><input type="password" id="confirmPassword"></p>
+            <div class="btnBox">
+                <input type="submit" id="pwdButton" value="Change Password" class="textBtn">
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/CustomerProfile.js"></script>
+</body>

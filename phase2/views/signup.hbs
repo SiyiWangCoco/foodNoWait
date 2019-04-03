@@ -1,0 +1,46 @@
+ {{> header }}
+
+<div id="signUp">
+    <h1 class="title">SIGN UP</h1>
+    {{#if type}} 
+    {{ else }}
+     <form method="post" action="/restaurants" enctype="multipart/form-data">
+    {{/if }}
+    <div class="mainInfo">
+            <div class="userName">
+                <strong>* USERNAME: </strong>
+                <input id="userNameInput" type="text" name="userName"/>
+            </div>
+
+            <div class="newpassword">
+                <strong>* PASSWORD: </strong>
+                <input type="password" id="newpasswordInput" name="password"/>
+            </div>
+
+            <div class="passwordComfirm">
+                <strong>* CONFIRM PASSWORD: </strong>
+                <input type="password" id="passwordConfirmInput" name="passwordConfirm"/>
+            </div>
+
+            <div class="email">
+                    <strong>* EMAIL: </strong>
+                    <input type="text" id="emailInput" name="email"/>
+            </div>
+    </div>
+    {{#if type}} 
+        {{> additionalInfo }}
+    {{ else }}
+        {{> restaurantSignUp }}
+    {{/if }}
+     <button type="submit" class="signupSubmit"> SUBMIT </button>
+{{#if type}} 
+{{ else }}
+ </form>
+{{/if }}         
+            
+ 	</div>
+{{#if type}} 
+     <script type="text/javascript" src="../js/signup.js"></script> 
+{{ else }}
+{{/if }}
+   

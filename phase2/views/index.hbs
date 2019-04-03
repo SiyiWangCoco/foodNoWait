@@ -1,8 +1,16 @@
+{{#if condition}} 
+    {{> headerUser }}
+{{ else }}
+     {{> header }}
+{{/if }}
+	
 <div id="homepageTop">
  	<h1 class="homeTitle">Let's Get In Line!</h1>
  	<div class="searchBar">
  		<input class="searchContent" type="text" placeholder="Find the restaurant...">
- 		<input class="searchSubmit" type="image" src="/picture/searchButton.png">
+		<a href="/search"> 
+ 			<img class="searchSubmit" src="/picture/searchButton.png"> 
+		</a>
  	</div>
  	<img id="homeImage" src="picture/homepageImage.png">
  </div>

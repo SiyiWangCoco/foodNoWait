@@ -32,12 +32,19 @@ const RestaurantSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    seatAvailable: {
+        type: Boolean,
+        default: true,
+        required: true
+    },
     phone: Number,
     reservations: [ReservationSchema],
-    waitList: [WaitListSchema],
+    smallWaitList: [WaitListSchema],
+    mediumWaitList: [WaitListSchema],
+    largeWaitList: [WaitListSchema],
     comments: [CommentSchema]
 });
 
 const Restaurant = mongoose.model('Restaurant', RestaurantSchema);
 
-module.exports = { Restaurant };
+module.exports = { Restaurant, RestaurantSchema };

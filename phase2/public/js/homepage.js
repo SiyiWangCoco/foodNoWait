@@ -64,7 +64,7 @@ function loadRestaurants(restaurants) {
 	restaurantsElement.className = 'restaurantsInList';
 	restaurantList.appendChild(restaurantsElement);
 	const link = document.createElement('a');
-	link.href = 'searchPage.html';
+	link.href = '/search';
 	link.innerHTML = 'See more...';
 	link.className = "seeMore";
 	restaurantsElement.appendChild(link);

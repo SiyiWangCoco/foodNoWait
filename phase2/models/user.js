@@ -1,11 +1,20 @@
 const mongoose = require('mongoose');
 const WaitListSchema = require('./waitList');
 const ReservationSchema = require('./reservations');
+const { RestaurantSchema } = require('./restaurant');
 const bcrypt = require('bcryptjs')
 const validator = require('validator');
 
 
 const UserSchema = new mongoose.Schema({
+    firstName: {
+      type: String, 
+      trim: true
+    },
+    lastName: {
+      type: String,
+      trim: true
+    },
     userName: {
     	type: String,
     	required: true,
@@ -18,6 +27,10 @@ const UserSchema = new mongoose.Schema({
     	required: true,
     	minlength: 4,
     	trim: true
+    },    
+    profilePic: {
+      data: Buffer, 
+      contentType: String 
     },
     gender: {
     	type: String,
@@ -33,36 +46,31 @@ const UserSchema = new mongoose.Schema({
     	trim: true
     },
   	phone: {
+      default: 0,
   		type: Number,
   		trim: true,
-  		minlength: 10,
-  		maxlength: 10,
-  		unique: true
   	},
   	email: {
   		type: String,
   		required: true,
   		minlength: 1,
   		trim: true, // trim whitespace
-  		unique: true,
   		validate: {
   			validator: validator.isEmail,
   			message: 'Not valid email'
   		}
 	  },
-    restaurantUser: String, //own restaurant id 
+    restaurantUser: RestaurantSchema, //own restaurant id 
   	description: String,
     reservations: [ReservationSchema],
     waitList: [WaitListSchema],
 });
 
-const User = mongoose.model('User', UserSchema);
-
 // Our own user finding function 
-UserSchema.statics.findByEmailPassword = function(email, password) {
+UserSchema.statics.findByEmailPassword = function(userName, password) {
   const User = this
 
-  return User.findOne({email: email}).then((user) => {
+  return User.findOne({userName: userName}).then((user) => {
     if (!user) {
       return Promise.reject()
     }
@@ -95,5 +103,7 @@ UserSchema.pre('save', function(next) {
   }
 
 })
+
+const User = mongoose.model('User', UserSchema);
 
 module.exports = { User };

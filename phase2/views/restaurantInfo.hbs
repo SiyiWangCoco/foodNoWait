@@ -1,9 +1,10 @@
+{{> headerUser }}
 <div id="restaurantInfo">
 	<span id="resName">
 		<strong>{{resName}}</strong>
 	</span>
 	<span id="resAdd">{{resAdd}}</span>
-	<span id="phone">{{resPhone}}</span>
+	<span id="phoneNumber">{{resPhone}}</span>
 	<span id="resScore">{{resStar}}</span>
 </div>
 
@@ -33,17 +34,17 @@
 		<div id="lineInfo">
 			<span class="tableInfo">
 				Small table(1-2)
-				<div id="smallTableNum">1</div>
+				<div id="smallTableNum">{{smallTableNum}}</div>
 				<input id="small" type="radio" name="table">
 			</span>
 			<span class="tableInfo">
 				Medium table(3-5)
-				<div id="mediumTableNum">3</div>
+				<div id="mediumTableNum">{{mediumTableNum}}</div>
 				<input id="medium" type="radio" name="table">
 			</span>
 			<span class="tableInfo">
-				Large table(5+)
-				<div id="largeTableNum">4</div>
+				Large table(6+)
+				<div id="largeTableNum">{{largeTableNum}}</div>
 				<input id="large" type="radio" name="table">
 			</span>
 		</div>

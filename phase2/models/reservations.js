@@ -17,11 +17,6 @@ const ReservationSchema = new mongoose.Schema({
     	required: true,
     	trim: true
     },
-    resvTable: {
-    	type: String,
-    	required: true,
-    	trim: true
-    },
     resvPhone: {
     	type: Number,
     	required: true,

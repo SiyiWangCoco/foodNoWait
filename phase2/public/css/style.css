@@ -238,7 +238,11 @@ body {
     padding-top: 20px;
 }
 
-.login {
+#userPassword {
+    margin-top: 10px;
+}
+
+#login {
     margin-left: 40px;
     text-decoration: none;
     font-size: 40px;
@@ -254,17 +258,20 @@ body {
 
 .notUser {
     margin-top: 30px;
+    font-size: 30px;
+    width:500px;
+    text-align:left;
 }
 
 .notUser  a {
-    font-size: 30px;
+    margin-left: 30px;
+    font-size: 25px;
     font-weight: bold;
-    width: 400px;
+    width: 500px;
     color: black;  
 }
 
 #signUp {
-    margin-top: 100px;
     width: 1000px;
     font-family: "Comic Sans MS";
     margin-right: 70px;
@@ -274,16 +281,19 @@ body {
     font-size: 50px;
     text-align: center;
     margin-left: 450px;
+    margin-bottom: -10px;
 }
 
 .mainInfo {
-    position: absolute;
-    margin-left: 20px;
+    margin-left: 220px;
 }
 
 .restInfomation {
-    position: absolute;
-    margin-left: 600px;
+    margin-left: 220px;
+}
+
+.restaurantSignUp {
+    margin-left: 220px;
 }
 
 #signUp strong {
@@ -316,9 +326,7 @@ body {
 
 
 .signupSubmit {
-    position: absolute;
-    top: 600px;
-    margin-left: 600px;
+    margin-left: 550px;
     text-decoration: none;
     font-size: 40px;
     font-weight: bold;
@@ -330,10 +338,10 @@ body {
     text-align: center;
     border-radius: 10px;
 }
-.userType select{
+#restaurantTypeSelect {
     border: none;
     outline: none;
-    width: 150px;;
+    width: 200px;;
     height: 30px;
     line-height: 20px;
     appearance: none;
