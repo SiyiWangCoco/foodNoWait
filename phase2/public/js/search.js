@@ -1,10 +1,16 @@
 'use strict';
 
-
 const searchClass = document.querySelector("#searchClass");
 searchClass.addEventListener("click", loadByClass);
 const searchBar = document.querySelector(".searchBar");
 searchBar.addEventListener("click", search);
+
+const currentText = document.querySelector(".searchContent").placeholder;
+if (currentText !== "Find the restaurant...") {
+	searchRestaurant(currentText);
+} else {
+	findAll();
+}
 
 /* Search restaurant by name */
 function search(e) {
@@ -15,6 +21,7 @@ function search(e) {
 			emptyList();
 			searchRestaurant(text);
 		} else {
+			emptyList();
 			findAll();
 		}
 	}

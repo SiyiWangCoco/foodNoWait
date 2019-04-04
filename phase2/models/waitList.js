@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
+const { ObjectID } = require('mongodb')
 
 const WaitListSchema = new mongoose.Schema({
-	waitUserid: String,
+	waitUserName: String,
+	waitUserPhone: Number,
+	waitRestaurantName: String,
 	waitTable: String,
-	waitNum: Number,
-	waitAhead: Number,
-	waitTime: Number,
-	waitPhone: Number
+	waitAhead: Number
 });
 
 

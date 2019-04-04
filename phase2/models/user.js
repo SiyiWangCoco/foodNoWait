@@ -46,9 +46,8 @@ const UserSchema = new mongoose.Schema({
     	trim: true
     },
   	phone: {
-      default: 0,
   		type: Number,
-  		trim: true,
+  		trim: true
   	},
   	email: {
   		type: String,

@@ -34,6 +34,11 @@ function signUp(e) {
 	        gender: gender
 	    }
 
+	    if (passwordConfirm !== password) {
+	        alert("password confirmation does not match");
+	        return;
+	    }
+
 	    // Create our request constructor with all the parameters we need
 	    const request = new Request('/users', {
 	        method: 'post', 
@@ -49,11 +54,6 @@ function signUp(e) {
 	            console.log('User has signed up')
 	            alert("You have signup")
 	        } else {
-	        	if (res === "incorrect email format") {
-	        		alert(res)
-	        	} else if (res === "user already existed") {
-	        		alert(res)
-	        	}
 	        	const re = /\S+@\S+\.\S+/;
 	            if (!userName) {
 	            	alert("missing username");
@@ -63,12 +63,12 @@ function signUp(e) {
 	            	alert("password must be at least 4 characters")
 	            } else if (!passwordConfirm) {
 	            	alert("Please confirm your password.")
-	            } else if (passwordConfirm !== password) {
-	            	alert("password confirmation does not match");
 	            } else if (!email) {
 	            	alert("missing email");
 	            } else if (!re.test(email)) {
 	            	alert("It is not a valid email")
+	            } else {
+	            	alert("User existed")
 	            }
 	        }
 	    }).catch((error) => {

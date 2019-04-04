@@ -24,13 +24,6 @@ function renderProfile() {
 		const age = data.age
 		const phone = data.phone
 		const description = data.description
-		const profilePic = data.profilePic
-		if (!profilePic) {
-			console.log("default profile picture")
-			profilePic = "../picture/upload.png";
-		} else {
-			console.log("here")
-		}
 	
 		document.querySelector('#username').setAttribute('value', userName)
 		document.querySelector('#accountType').setAttribute('value', accountType)
@@ -40,7 +33,6 @@ function renderProfile() {
 		document.querySelector('#age').setAttribute('value', age)
 		document.querySelector('#phone').setAttribute('value', phone)
 		document.querySelector('#description').setAttribute('value', description)
-		document.querySelector('#preview').style.backgroundImage = 'url(' + profilePic + ')';
 	
 		if (gender == "female") {
 			document.querySelector('#genderF').setAttribute('selected', "selected")
@@ -61,7 +53,6 @@ function renderProfile() {
 	
 }
 
-
 // upload profile picture
 var eleFile = document.querySelector('#file');
 
@@ -80,6 +71,7 @@ eleFile.addEventListener('change', function() {
 });
 
 
+
 // change profile information
 const infoButton = document.getElementById("infoButton")
 infoButton.onclick = changeInfo
@@ -94,7 +86,6 @@ function changeInfo() {
 	const age = $('#age').val();
 	const phone = $('#phone').val();
 	const description = $('#description').val();
-	const profilePic = $('#preview').style.backgroundImage.replace('url(','').replace(')','');
 	
 	const data = {
 		firstName: firstName, 
@@ -104,7 +95,6 @@ function changeInfo() {
 		age: age,
 		phone: phone,
 		description: description,
-		profilePic: profilePic
 	}
 	console.log("client", data)
 

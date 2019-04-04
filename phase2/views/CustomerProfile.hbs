@@ -1,4 +1,12 @@
-{{> headerUser }}
+{{#if iscustomer}} 
+    {{> headerUser }}
+{{ else }}
+    {{#if isres }} 
+        {{> headerRes }}
+    {{ else }}
+        {{> headerAdmin }}
+    {{/if }}
+{{/if }}
 <head>
     <meta charset="utf-8">
     <title>Customer Profile</title>
@@ -6,10 +14,14 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css"/>
 </head>
 <body>
-    <div class="container">
-        <div id="preview">
-            <input type="file" accept="image/*" id="file"/>
+    <form class="imgform" enctype="multipart/form-data" action="/profile/imageupload" method="post">
+        <div class="container">
+            <div id="preview" style="background-image: url({{imageAdd}}); border:none">
+                <input id="file" accept="image/*" type="file" name="file"/>
+            </div>
+            <button type="submit">Confirm Upload</button>
         </div>
+    </form>
         <div class="detailInfo">
             <p><label>Username:</label><input type="text" disabled="disabled" id="username"></p>
             <p><label>Account Type:</label><input type="text" disabled="disabled" id="accountType"></p>
@@ -40,7 +52,6 @@
             </div>
         </div>
     </div>
-
     <script type="text/javascript" src="../js/jquery.js"></script>
     <script type="text/javascript" src="../js/CustomerProfile.js"></script>
 </body>

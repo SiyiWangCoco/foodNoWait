@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const WaitListSchema = require('./waitList');
 const ReservationSchema = require('./reservations');
+const { ObjectID } = require('mongodb')
 
 const CommentSchema = new mongoose.Schema({
-	commentUserid: String,
+	commentUserName: String,
 	commentInfo: String
 });
 
@@ -35,6 +36,10 @@ const RestaurantSchema = new mongoose.Schema({
     seatAvailable: {
         type: Boolean,
         default: true,
+        required: true
+    },
+    userName: {
+        type: String,
         required: true
     },
     phone: Number,

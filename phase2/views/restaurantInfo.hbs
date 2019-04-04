@@ -16,9 +16,25 @@
 	<div id="reservation">
 		<div id="reserTitle">Reservation: </div>
 		<div id="reserDate">
-			Today<input id="today" type="radio" name="date">
-			Tomorrow<input id="tomorrow" type="radio" name="date">
+			<input type="date" id="date" value="2019-04-04">
 		</div>
+		<br>
+  <div class="form-group">
+    <span id="peopleTitle">Number of People: </span>
+    <select id="peopleSelect" class="form-control">
+	      <option>1</option>
+	      <option>2</option>
+	      <option>3</option>
+	      <option>4</option>
+	      <option>6</option>
+	      <option>7</option>
+	      <option>8</option>
+	      <option>9</option>
+	      <option>10</option>
+	      <option>11</option>
+	      <option>12</option>
+   		</select>
+   		</div>
 		<br>
 		<div id="reserTime">
 			<button class="time">14:00</button>	
@@ -34,17 +50,17 @@
 		<div id="lineInfo">
 			<span class="tableInfo">
 				Small table(1-2)
-				<div id="smallTableNum">{{smallTableNum}}</div>
+				<div id="smallTableNum">{{smallWaitList}}</div>
 				<input id="small" type="radio" name="table">
 			</span>
 			<span class="tableInfo">
 				Medium table(3-5)
-				<div id="mediumTableNum">{{mediumTableNum}}</div>
+				<div id="mediumTableNum">{{mediumWaitList}}</div>
 				<input id="medium" type="radio" name="table">
 			</span>
 			<span class="tableInfo">
 				Large table(6+)
-				<div id="largeTableNum">{{largeTableNum}}</div>
+				<div id="largeTableNum">{{largeWaitList}}</div>
 				<input id="large" type="radio" name="table">
 			</span>
 		</div>
@@ -60,7 +76,7 @@
 	<div id="commentsHis">
 		{{#each comments}}
 		<div class="userComment">
-			<span class="user">{{this.commentUserid}}: </span>
+			<span class="user">{{this.commentUserName}}: </span>
 			<span class="commentText">{{this.commentInfo}}</span>
 		</div>
 		{{/each}}
@@ -71,4 +87,4 @@
 		<input id="submitButton" type="submit" value="Submit">
 	</div>
 </div>
-<script type="text/javascript" src="js/restaurantInfo.js"></script>
+<script type="text/javascript" src="../js/restaurantInfo.js"></script>

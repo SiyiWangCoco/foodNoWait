@@ -23,6 +23,7 @@ function userLogin(e) {
         });
         fetch(request)
         .then(function(res) {
+            console.log(res.status)
             if (res.status !== 200) {
                 alert("Login failed! Wrong user credentials, please check.")
             }

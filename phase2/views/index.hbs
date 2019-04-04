@@ -7,10 +7,12 @@
 <div id="homepageTop">
  	<h1 class="homeTitle">Let's Get In Line!</h1>
  	<div class="searchBar">
- 		<input class="searchContent" type="text" placeholder="Find the restaurant...">
-		<a href="/search"> 
- 			<img class="searchSubmit" src="/picture/searchButton.png"> 
-		</a>
+ 		<form action="/restaurants/search" method="post">
+	 		<input name="content" class="searchContent" type="text" placeholder="Find the restaurant...">
+			<button class="searchSubmit" type="submit"> 
+	 			<img src="/picture/searchButton.png"> 
+	 		</button>
+		</form>
  	</div>
  	<img id="homeImage" src="picture/homepageImage.png">
  </div>
