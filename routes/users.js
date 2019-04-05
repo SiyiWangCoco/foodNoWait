@@ -740,11 +740,22 @@ router.post('/status/changeTableSize', (req, res) => {
 				if (index > -1) {
 					waitList.splice(index, 1);
 
-					waitList.forEach(waitItem => {
-						waitItem.waitAhead -= 1
-					});
-				}
+					for (let i = index; i < waitList.length; i++) {
+						waitList[i].waitAhead -= 1
 
+						User.findOneAndUpdate(
+							{ "userName": waitList[i].waitUserName },
+							{ $inc: { "waitList.$[elem].waitAhead": -1 } },
+							{
+								multi: true,
+								arrayFilters: [{ "elem._id": {$eq: waitList[i]._id}}]
+							}
+						).then((result) => {
+						}).catch((error) => {
+							return console.status(500).send(error)
+						})
+					}
+				}
 				waitList = { "smallWaitList": waitList }
 			} else if (tableSize === "B") {
 				waitList = rest.mediumWaitList
@@ -757,9 +768,21 @@ router.post('/status/changeTableSize', (req, res) => {
 				if (index > -1) {
 					waitList.splice(index, 1);
 
-					waitList.forEach(waitItem => {
-						waitItem.waitAhead -= 1
-					});
+					for (let i = index; i < waitList.length; i++) {
+						waitList[i].waitAhead -= 1
+
+						User.findOneAndUpdate(
+							{ "userName": waitList[i].waitUserName },
+							{ $inc: { "waitList.$[elem].waitAhead": -1 } },
+							{
+								multi: true,
+								arrayFilters: [{ "elem._id": {$eq: waitList[i]._id}}]
+							}
+						).then((result) => {
+						}).catch((error) => {
+							return console.status(500).send(error)
+						})
+					}
 				}
 
 				waitList = { "mediumWaitList": waitList }
@@ -774,9 +797,21 @@ router.post('/status/changeTableSize', (req, res) => {
 				if (index > -1) {
 					waitList.splice(index, 1);
 
-					waitList.forEach(waitItem => {
-						waitItem.waitAhead -= 1
-					});
+					for (let i = index; i < waitList.length; i++) {
+						waitList[i].waitAhead -= 1
+
+						User.findOneAndUpdate(
+							{ "userName": waitList[i].waitUserName },
+							{ $inc: { "waitList.$[elem].waitAhead": -1 } },
+							{
+								multi: true,
+								arrayFilters: [{ "elem._id": {$eq: waitList[i]._id}}]
+							}
+						).then((result) => {
+						}).catch((error) => {
+							return console.status(500).send(error)
+						})
+					}
 				}
 
 				waitList = { "largeWaitList": waitList }
