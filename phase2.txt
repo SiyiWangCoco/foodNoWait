@@ -1,5 +1,8 @@
 ** We handed this project late for one day, please look at the last commit. **
 
+** Our deployed web app is https://foodnowait.herokuapp.com/ ,which is our index page.
+
+
 For phase2, we can now sign up as a restaurant owner, and you need to upload pictures for your restaurant.  Note that you need to have a unique username to sign up.
 
 For convenience, we also include instruction from phase1 below.
@@ -26,7 +29,7 @@ We can also upload pictures for users and they would be shown while commenting.
 
 Now with the database, all information can be retrived dynamically (including lining up info and reservation info) and they are located at the right corner "waiting & reservation", which you could check your reservation and line up infos.
 
-Restaurant owner can also dynamically check restaurant's lineup status and reservation status, and add to line or pop from line at any time. They could also manage reservation and check out any that has been finished.
+Restaurant owner can also dynamically check restaurant's lineup status and reservation status, and add to line or pop from line at any time. They could also manage reservation and check out any that has been finished. Note that the user that is added to the line will be created as a new user and password is "default" by default.
 
 
 // Instruction from phase 1

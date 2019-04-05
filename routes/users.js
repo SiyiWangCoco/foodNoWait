@@ -21,6 +21,9 @@ router.post('/default/small', (req, res) => {
 		userType: "customer"
 	});
 
+	let userId;
+	let restaurantelem;
+
 	const waitList = {
 		waitUserName: req.body.userName,
 		waitUserEmail: req.body.email
@@ -43,6 +46,7 @@ router.post('/default/small', (req, res) => {
 		if (!result) {
 			res.status(400).send();
 		} else {
+			userId = result._id
 			return User.findById(req.session.user)
 		}
 	}).then((user) => {
@@ -53,20 +57,27 @@ router.post('/default/small', (req, res) => {
 		}
 	}).then((restaurant) => {
 		if (restaurant) {
-			waitList.waitAhead = restaurant.smallWaitList.length
+			waitList.waitAhead = restaurant.smallWaitList.length + 1
 			waitList.waitRestaurantName = restaurant.restaurantName
 			waitList.waitTable = "A"
-			return Restaurant.findOneAndUpdate({restaurantName: restaurant.restaurantName}, {$push: {smallWaitList: waitList}})
+			return Restaurant.findOneAndUpdate({restaurantName: restaurant.restaurantName}, {$push: {smallWaitList: waitList}}, {new: true})
 		}
 	}).then((restaurant) => {
 		if (restaurant) {
-			return User.findByIdAndUpdate(req.session.user, {$push: {"waitList":waitList}})
+			restaurantelem = restaurant;
+			return User.findByIdAndUpdate(userId, {$push: {"waitList":waitList}})
 		}
 	}).then((user) => {
 		if (!user) { 
 			return res.status(404).send()
 		} else {
-			res.redirect("/restaurant/homepage")
+			return User.findByIdAndUpdate(req.session.user, {$set: {restaurantUser: restaurantelem}})
+		}
+	}).then((user) => {
+		if (!user) {
+			return res.status(404).send()
+		} else {
+			res.redirect('/restaurant/homepage')
 		}
 	}).catch((error) => {
 		res.status(500).send(error)
@@ -81,6 +92,9 @@ router.post('/default/medium', (req, res) => {
 		userType: "customer"
 	});
 
+	let userId;
+	let restaurantelem;
+
 	const waitList = {
 		waitUserName: req.body.userName,
 		waitUserEmail: req.body.email
@@ -103,6 +117,7 @@ router.post('/default/medium', (req, res) => {
 		if (!result) {
 			res.status(400).send();
 		} else {
+			userId = result._id
 			return User.findById(req.session.user)
 		}
 	}).then((user) => {
@@ -113,20 +128,27 @@ router.post('/default/medium', (req, res) => {
 		}
 	}).then((restaurant) => {
 		if (restaurant) {
-			waitList.waitAhead = restaurant.mediumWaitList.length
+			waitList.waitAhead = restaurant.mediumWaitList.length + 1
 			waitList.waitRestaurantName = restaurant.restaurantName
-			waitList.waitTable = "A"
-			return Restaurant.findOneAndUpdate({restaurantName: restaurant.restaurantName}, {$push: {mediumWaitList: waitList}})
+			waitList.waitTable = "B"
+			return Restaurant.findOneAndUpdate({restaurantName: restaurant.restaurantName}, {$push: {mediumWaitList: waitList}}, {new: true})
 		}
 	}).then((restaurant) => {
 		if (restaurant) {
-			return User.findByIdAndUpdate(req.session.user, {$push: {"waitList":waitList}})
+			restaurantelem = restaurant;
+			return User.findByIdAndUpdate(userId, {$push: {"waitList":waitList}})
 		}
 	}).then((user) => {
 		if (!user) { 
 			return res.status(404).send()
 		} else {
-			res.redirect("/restaurant/homepage")
+			return User.findByIdAndUpdate(req.session.user, {$set: {restaurantUser: restaurantelem}})
+		}
+	}).then((user) => {
+		if (!user) {
+			return res.status(404).send()
+		} else {
+			res.redirect('/restaurant/homepage')
 		}
 	}).catch((error) => {
 		res.status(500).send(error)
@@ -141,6 +163,9 @@ router.post('/default/large', (req, res) => {
 		userType: "customer"
 	});
 
+	let userId;
+	let restaurantelem;
+
 	const waitList = {
 		waitUserName: req.body.userName,
 		waitUserEmail: req.body.email
@@ -163,6 +188,7 @@ router.post('/default/large', (req, res) => {
 		if (!result) {
 			res.status(400).send();
 		} else {
+			userId = result._id
 			return User.findById(req.session.user)
 		}
 	}).then((user) => {
@@ -173,20 +199,27 @@ router.post('/default/large', (req, res) => {
 		}
 	}).then((restaurant) => {
 		if (restaurant) {
-			waitList.waitAhead = restaurant.largeWaitList.length
+			waitList.waitAhead = restaurant.largeWaitList.length + 1
 			waitList.waitRestaurantName = restaurant.restaurantName
-			waitList.waitTable = "A"
-			return Restaurant.findOneAndUpdate({restaurantName: restaurant.restaurantName}, {$push: {largeWaitList: waitList}})
+			waitList.waitTable = "C"
+			return Restaurant.findOneAndUpdate({restaurantName: restaurant.restaurantName}, {$push: {largeWaitList: waitList}}, {new: true})
 		}
 	}).then((restaurant) => {
 		if (restaurant) {
-			return User.findByIdAndUpdate(req.session.user, {$push: {"waitList":waitList}})
+			restaurantelem = restaurant;
+			return User.findByIdAndUpdate(userId, {$push: {"waitList":waitList}})
 		}
 	}).then((user) => {
 		if (!user) { 
 			return res.status(404).send()
 		} else {
-			res.redirect("/restaurant/homepage")
+			return User.findByIdAndUpdate(req.session.user, {$set: {restaurantUser: restaurantelem}})
+		}
+	}).then((user) => {
+		if (!user) {
+			return res.status(404).send()
+		} else {
+			res.redirect('/restaurant/homepage')
 		}
 	}).catch((error) => {
 		res.status(500).send(error)

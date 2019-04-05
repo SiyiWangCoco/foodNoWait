@@ -46,10 +46,8 @@ router.get('/', (req, res)  => {
                 ownersList.push(o)
             }
         }
-    }).catch(error => console.log(error))
-
-    // restaurant
-    Restaurant.find().then((restaurants) => {
+        return Restaurant.find()
+    }).then((restaurants) => {
         for (let j in restaurants) {
             const rest = restaurants[j]
             const r = {
@@ -63,15 +61,13 @@ router.get('/', (req, res)  => {
             }
             restaurantsList.push(r)
         }
+        res.render('admin', {
+            customers: customersList,
+            owners: ownersList,
+            restaurants: restaurantsList,
+            user: 'admin'
+        })
     }).catch(error => console.log(error))
-
-    res.render('admin', {
-        customers: customersList,
-        owners: ownersList,
-        restaurants: restaurantsList,
-       
-        user: 'admin'
-    })
 })
 
 

@@ -146,7 +146,7 @@ function checkYourTurnForLineUp() {
 			
 			fetch(request).then((res) => {
 				if (res.status === 200) {
-					window.location.href = "/users/status";
+					setTimeout(function() {window.location.href = "/users/status"}, 2500);
 				} else {
 					swal("", "Oops! An error occurred. Failed to cancel line up.", "error");
 				}
