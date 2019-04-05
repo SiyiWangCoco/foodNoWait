@@ -14,6 +14,10 @@ router.get('/', function(req, res, next){
     	if (req.session.userType === "restaurant") {
     		res.redirect("/restaurant/homepage")
     	} else {
+			if (req.session.userType === "admin") {
+				res.redirect("/admin")
+				return;
+			}
 	        // find unique user id
 		    const id = req.session.user;
 		    // Good practise is to validate the id
@@ -69,6 +73,9 @@ router.get('/signup/restaurant', function(req, res, next){
 router.get('/signup/customer', function(req, res, next){
     res.render('signup', {title:'FoodNoWait', type: true});
 });
+
+
+
 
 
 module.exports = router;

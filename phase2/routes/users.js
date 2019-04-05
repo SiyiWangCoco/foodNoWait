@@ -13,6 +13,185 @@ const multer = require('multer');
 
 const upload = multer({ dest:  __dirname + '/public/upload'});
 
+router.post('/default/small', (req, res) => {
+	const user = new User({
+		userName: req.body.userName,
+		password: "default",
+		email: req.body.email,
+		userType: "customer"
+	});
+
+	const waitList = {
+		waitUserName: req.body.userName,
+		waitUserEmail: req.body.email
+	}
+
+	if (!req.session.user) {
+		return res.send("users/signin")
+	}
+	if (!validator.isEmail(user.email)) {
+		return res.status(400).send("incorrect email format")
+	}
+
+	User.findOne({userName: user.userName}).then((result) => {
+		if (!result) {
+			return user.save()
+		} else {
+			res.status(400).send("user already existed")
+		}
+	}).then((result) => {
+		if (!result) {
+			res.status(400).send();
+		} else {
+			return User.findById(req.session.user)
+		}
+	}).then((user) => {
+		if (!user) {
+			return res.redirect("/users/signin")
+		} else {
+			return Restaurant.findOne({restaurantName: user.restaurantUser.restaurantName})
+		}
+	}).then((restaurant) => {
+		if (restaurant) {
+			waitList.waitAhead = restaurant.smallWaitList.length
+			waitList.waitRestaurantName = restaurant.restaurantName
+			waitList.waitTable = "A"
+			return Restaurant.findOneAndUpdate({restaurantName: restaurant.restaurantName}, {$push: {smallWaitList: waitList}})
+		}
+	}).then((restaurant) => {
+		if (restaurant) {
+			return User.findByIdAndUpdate(req.session.user, {$push: {"waitList":waitList}})
+		}
+	}).then((user) => {
+		if (!user) { 
+			return res.status(404).send()
+		} else {
+			res.redirect("/restaurant/homepage")
+		}
+	}).catch((error) => {
+		res.status(500).send(error)
+	});
+})
+
+router.post('/default/medium', (req, res) => {
+	const user = new User({
+		userName: req.body.userName,
+		password: "default",
+		email: req.body.email,
+		userType: "customer"
+	});
+
+	const waitList = {
+		waitUserName: req.body.userName,
+		waitUserEmail: req.body.email
+	}
+
+	if (!req.session.user) {
+		return res.send("users/signin")
+	}
+	if (!validator.isEmail(user.email)) {
+		return res.status(400).send("incorrect email format")
+	}
+
+	User.findOne({userName: user.userName}).then((result) => {
+		if (!result) {
+			return user.save()
+		} else {
+			res.status(400).send("user already existed")
+		}
+	}).then((result) => {
+		if (!result) {
+			res.status(400).send();
+		} else {
+			return User.findById(req.session.user)
+		}
+	}).then((user) => {
+		if (!user) {
+			return res.redirect("/users/signin")
+		} else {
+			return Restaurant.findOne({restaurantName: user.restaurantUser.restaurantName})
+		}
+	}).then((restaurant) => {
+		if (restaurant) {
+			waitList.waitAhead = restaurant.mediumWaitList.length
+			waitList.waitRestaurantName = restaurant.restaurantName
+			waitList.waitTable = "A"
+			return Restaurant.findOneAndUpdate({restaurantName: restaurant.restaurantName}, {$push: {mediumWaitList: waitList}})
+		}
+	}).then((restaurant) => {
+		if (restaurant) {
+			return User.findByIdAndUpdate(req.session.user, {$push: {"waitList":waitList}})
+		}
+	}).then((user) => {
+		if (!user) { 
+			return res.status(404).send()
+		} else {
+			res.redirect("/restaurant/homepage")
+		}
+	}).catch((error) => {
+		res.status(500).send(error)
+	});
+})
+
+router.post('/default/large', (req, res) => {
+	const user = new User({
+		userName: req.body.userName,
+		password: "default",
+		email: req.body.email,
+		userType: "customer"
+	});
+
+	const waitList = {
+		waitUserName: req.body.userName,
+		waitUserEmail: req.body.email
+	}
+
+	if (!req.session.user) {
+		return res.send("users/signin")
+	}
+	if (!validator.isEmail(user.email)) {
+		return res.status(400).send("incorrect email format")
+	}
+
+	User.findOne({userName: user.userName}).then((result) => {
+		if (!result) {
+			return user.save()
+		} else {
+			res.status(400).send("user already existed")
+		}
+	}).then((result) => {
+		if (!result) {
+			res.status(400).send();
+		} else {
+			return User.findById(req.session.user)
+		}
+	}).then((user) => {
+		if (!user) {
+			return res.redirect("/users/signin")
+		} else {
+			return Restaurant.findOne({restaurantName: user.restaurantUser.restaurantName})
+		}
+	}).then((restaurant) => {
+		if (restaurant) {
+			waitList.waitAhead = restaurant.largeWaitList.length
+			waitList.waitRestaurantName = restaurant.restaurantName
+			waitList.waitTable = "A"
+			return Restaurant.findOneAndUpdate({restaurantName: restaurant.restaurantName}, {$push: {largeWaitList: waitList}})
+		}
+	}).then((restaurant) => {
+		if (restaurant) {
+			return User.findByIdAndUpdate(req.session.user, {$push: {"waitList":waitList}})
+		}
+	}).then((user) => {
+		if (!user) { 
+			return res.status(404).send()
+		} else {
+			res.redirect("/restaurant/homepage")
+		}
+	}).catch((error) => {
+		res.status(500).send(error)
+	});
+})
 
 router.post('/', (req, res) => {
 
@@ -24,7 +203,7 @@ router.post('/', (req, res) => {
         userType: req.body.userType,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        phoneNumber: req.body.phoneNumber,
+        phone: req.body.phoneNumber,
         age: req.body.age,
         gender: req.body.gender
 	})
@@ -52,7 +231,7 @@ router.post('/', (req, res) => {
 })
 
 router.get('/signin', function(req, res, next){
-    res.render('signin', {title:'FoodNoWait', conditon: false});
+    res.render('signin', {title:'FoodNoWait', conditon: false });
 }); 
 
 router.post('/signin', (req, res) => {
@@ -70,6 +249,10 @@ router.post('/signin', (req, res) => {
 			if (req.session.userType === "restaurant") {
 				req.session.restaurantUser = user.restaurantUser;
 				res.redirect('/restaurant/homepage');
+				return;
+			}
+			if (req.session.userType === "admin") {
+				res.redirect('/admin')
 				return;
 			}
 			res.redirect("/");
@@ -102,7 +285,7 @@ router.get('/profile', function (req, res) {
 			} else if (user.userType == "restaurant"){
 				res.render('CustomerProfile', {title:'FoodNoWait',imageAdd:imageAdd, iscustomer: false, isres: true, user:user.userName});
 			} else {
-				es.render('CustomerProfile', {title:'FoodNoWait',imageAdd:imageAdd, iscustomer: false, isres: false, user:user.userName});
+				res.render('CustomerProfile', {title:'FoodNoWait',imageAdd:imageAdd, iscustomer: false, isres: false, user:user.userName});
 			}
 			
 		}
@@ -160,7 +343,6 @@ router.post('/profile/edit', upload.single('profilePic'), (req, res) => {
 	const age = req.body.age;
 	const phone = req.body.phone;
 	const description = req.body.description;
-	const profilePic = req.body.profilePic
 
 	if (!validator.isEmail(email)) {
 		res.status(400).send("incorrect email format")
@@ -169,7 +351,7 @@ router.post('/profile/edit', upload.single('profilePic'), (req, res) => {
   
 	// Otheriwse, findByIdAndUpdate
 	User.findByIdAndUpdate(id, {$set: { firstName: firstName, lastName: lastName, email: email, gender: gender, 
-		age: age, phone: phone, description: description, profilePic: {data: fs.readFileSync(profilePic.path), contentType: profilePic.mimetype} }}, {new: true}).then((user) => {
+		age: age, phone: phone, description: description }}, {new: true}).then((user) => {
 			if (!user) {
 				res.status(404).redirect('/users/signin')
 			} else {
@@ -224,7 +406,25 @@ router.get('/logout', (req, res) => {
 
 
 router.get('/status', function(req, res) {
-    res.render('UserInfoPage', {title:'FoodNoWait', conditon: false});
+	// find unique user id
+	const id = req.session.user;
+
+	// Good practise is to validate the id
+	if (!ObjectID.isValid(id)) {
+		return res.status(404).send()
+	}
+
+	// Otheriwse, findById
+	User.findById(id).then((user) => {
+		if (!user) {
+			res.status(404).redirect('/users/signin')
+		} else {
+			res.render('UserInfoPage', {title:'FoodNoWait', conditon: false, user:user.userName});	
+		}
+	}).catch((error) => {
+			res.status(400).send()
+		})
+    
 });
 
 router.get('/status/get', function(req,res) {
@@ -251,6 +451,35 @@ router.get('/status/get', function(req,res) {
 	})
 })
 
+router.delete('/status/deleteLineUp', function(req, res) {
+	// find unique user id
+	const id = req.session.user
+
+	// Good practise is to validate the id
+	if (!ObjectID.isValid(id)) {
+		return res.status(404).send()
+	}
+
+	const waitRestaurantId = req.body.waitRestaurantId
+
+	// remove line up from user
+	User.findById(id).then((user) => {
+		if (!user) {
+			res.status(404).redirect('/users/signin')
+		} else {
+			return User.findOneAndUpdate({'waitList._id': {$eq: waitRestaurantId}}, {$pull: { waitList: { "_id": waitRestaurantId }}}, {new: true})
+		}
+	}).then((user) => {
+		if (!user) {
+			res.status(404).redirect('/users/signin')
+		} else {
+			res.send()
+		}
+	}).catch((error) => {
+		res.status(500).send(error)
+	})
+});
+
 router.delete('/status/cancelLineUp', function(req, res) {
 	// find unique user id
 	const id = req.session.user
@@ -261,9 +490,9 @@ router.delete('/status/cancelLineUp', function(req, res) {
 	}
 
 	const waitRestaurant = req.body.waitRestaurant
-	const restName = waitRestaurant.waitRestaurantName
 
 	// remove line up from restaurant
+	const restName = waitRestaurant.waitRestaurantName
 	Restaurant.findOne({ restaurantName: restName }).then((rest) => {
 		if (!rest) {
 			res.status(404).send()
@@ -273,25 +502,88 @@ router.delete('/status/cancelLineUp', function(req, res) {
 			var waitList;
 			if (tableSize === "A") {
 				waitList = rest.smallWaitList
-				const index = waitList.indexOf(waitRestaurant)
+				let index = -1;
+				for (let i = 0; i < waitList.length; i++) {
+					if (waitList[i]._id == waitRestaurant._id) {
+						index = i;
+					}
+				}
 				if (index > -1) {
 					waitList.splice(index, 1);
+
+					for (let i = index; i < waitList.length; i++) {
+						waitList[i].waitAhead -= 1
+
+						User.findOneAndUpdate(
+							{ "userName": waitList[i].waitUserName },
+							{ $inc: { "waitList.$[elem].waitAhead": -1 } },
+							{
+								multi: true,
+								arrayFilters: [{ "elem._id": {$eq: waitList[i]._id}}]
+							}
+						).then((result) => {
+						}).catch((error) => {
+							return console.status(500).send(error)
+						})
+					}
 				}
 
 				waitList = { "smallWaitList": waitList }
 			} else if (tableSize === "B") {
 				waitList = rest.mediumWaitList
-				const index = waitList.indexOf(waitRestaurant)
+				let index = -1;
+				for (let i = 0; i < waitList.length; i++) {
+					if (waitList[i]._id == waitRestaurant._id) {
+						index = i;
+					}
+				}
 				if (index > -1) {
 					waitList.splice(index, 1);
+
+					for (let i = index; i < waitList.length; i++) {
+						waitList[i].waitAhead -= 1
+
+						User.findOneAndUpdate(
+							{ "userName": waitList[i].waitUserName },
+							{ $inc: { "waitList.$[elem].waitAhead": -1 } },
+							{
+								multi: true,
+								arrayFilters: [{ "elem._id": {$eq: waitList[i]._id}}]
+							}
+						).then((result) => {
+						}).catch((error) => {
+							return console.status(500).send(error)
+						})
+					}
 				}
 
 				waitList = { "mediumWaitList": waitList }
 			} else if (tableSize === "C") {
 				waitList = rest.largeWaitList
-				const index = waitList.indexOf(waitRestaurant)
+				let index = -1;
+				for (let i = 0; i < waitList.length; i++) {
+					if (waitList[i]._id == waitRestaurant._id) {
+						index = i;
+					}
+				}
 				if (index > -1) {
 					waitList.splice(index, 1);
+					
+					for (let i = index; i < waitList.length; i++) {
+						waitList[i].waitAhead -= 1
+
+						User.findOneAndUpdate(
+							{ "userName": waitList[i].waitUserName },
+							{ $inc: { "waitList.$[elem].waitAhead": -1 } },
+							{
+								multi: true,
+								arrayFilters: [{ "elem._id": {$eq: waitList[i]._id}}]
+							}
+						).then((result) => {
+						}).catch((error) => {
+							return console.status(500).send(error)
+						})
+					}
 				}
 
 				waitList = { "largeWaitList": waitList }
@@ -299,40 +591,31 @@ router.delete('/status/cancelLineUp', function(req, res) {
 				console.log("UNKNOWN value of waitTable")
 			}
 
-			Restaurant.findOneAndUpdate({ restaurantName: restName }, {$set: waitList}, {new: true}).then((rest) => {
-				if (!rest) {
-					res.status(404).send()
-				}
-			})
+			return Restaurant.findOneAndUpdate({ restaurantName: restName }, {$set: waitList}, {new: true})
 		}
-	}).catch((error) => {
-		res.status(500).send(error)
-	})
-
-	// remove line up from user
-	User.findById(id).then((user) => {
+	}).then((rest) => {
+		if (!rest) {
+			return res.status(404).send()
+		} else {
+			// remove line up from user
+			return User.findById(id)
+		}
+	}).then((user) => {
 		if (!user) {
 			res.status(404).redirect('/users/signin')
 		} else {
-			const waitList = user.waitList;
-			const index = waitList.indexOf(waitRestaurant);
-			if (index > -1) {
-				waitList.splice(index, 1);
-			}
-
-			User.findByIdAndUpdate(id, {$set: { waitList: waitList }}, {new: true}).then((user) => {
-				if (!user) {
-					res.status(404).redirect('/users/signin')
-				} else {
-					res.send()
-				}
-			})
+			return User.findOneAndUpdate({'waitList._id': {$eq: waitRestaurant._id}}, {$pull: { waitList: { "_id": waitRestaurant._id }}}, {new: true})
+		}
+	}).then((user) => {
+		if (!user) {
+			res.status(404).redirect('/users/signin')
+		} else {
+			res.send()
 		}
 	}).catch((error) => {
 		res.status(500).send(error)
 	})
 });
-
 
 router.delete('/status/cancelReservation', function(req, res) {
 	// find unique user id
@@ -344,52 +627,240 @@ router.delete('/status/cancelReservation', function(req, res) {
 	}
 
 	const resvRestaurant = req.body.resvRestaurant
-	const restName = resvRestaurant.resvRestaurantName
 
 	// remove reservation from restaurant
+	const restName = resvRestaurant.resvRestaurantName
+
 	Restaurant.findOne({ restaurantName: restName }).then((rest) => {
 		if (!rest) {
 			res.status(404).send()
 		} else {
 			const reservations = rest.reservations
-			const index = reservations.indexOf(resvRestaurant)
+
+			let index = -1;
+			for (let i = 0; i < reservations.length; i++) {
+				if (reservations[i]._id == resvRestaurant._id) {
+					index = i;
+				}
+			}
 			if (index > -1) {
 				reservations.splice(index, 1);
 			}
 
-			Restaurant.findOneAndUpdate({ restaurantName: restName }, {$set: { reservations: reservations }}, {new: true}).then((rest) => {
-				if (!rest) {
-					res.status(404).send()
-				}
-			})
+			return Restaurant.findOneAndUpdate({ restaurantName: restName }, {$set: { reservations: reservations }}, {new: true})
 		}
-	}).catch((error) => {
-		res.status(500).send(error)
-	})
-
-	// remove reservation from user
-	User.findById(id).then((user) => {
+	}).then((rest) => {
+		if (!rest) {
+			res.status(404).send()
+		} else {
+			return User.findById(id)
+		}
+	}).then((user) => {
 		if (!user) {
 			res.status(404).redirect('/users/signin')
 		} else {
-			const reservations = user.reservations;
-			const index = reservations.indexOf(resvRestaurant);
-			if (index > -1) {
-				reservations.splice(index, 1);
-			}
-
-			User.findByIdAndUpdate(id, {$set: { reservations: reservations }}, {new: true}).then((user) => {
-				if (!user) {
-					res.status(404).redirect('/users/signin')
-				} else {
-					res.send()
-				}
-			})
+			return User.findOneAndUpdate({'reservations._id': {$eq: resvRestaurant._id}}, {$pull: { reservations: { "_id": resvRestaurant._id }}}, {new: true})
+		}
+	}).then((user) => {
+		if (!user) {
+			res.status(404).redirect('/users/signin')
+		} else {
+			res.send()
 		}
 	}).catch((error) => {
 		res.status(500).send(error)
 	})
 });
+
+router.post('/status/changeTableSize', (req, res) => {
+	// find unique user id
+	const id = req.session.user
+
+	// Good practise is to validate the id
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send()
+	}
+
+	const waitRestaurant = req.body.waitRestaurant
+	const newTableSize = req.body.tableSize
+
+	// remove line up from restaurant
+	const restName = waitRestaurant.waitRestaurantName
+	Restaurant.findOne({ restaurantName: restName }).then((rest) => {
+		if (!rest) {
+			res.status(404).send()
+		} else {
+			const tableSize = waitRestaurant.waitTable
+
+			var waitList;
+			if (tableSize === "A") {
+				waitList = rest.smallWaitList
+				let index = -1;
+				for (let i = 0; i < waitList.length; i++) {
+					if (waitList[i]._id == waitRestaurant._id) {
+						index = i;
+					}
+				}
+				if (index > -1) {
+					waitList.splice(index, 1);
+
+					waitList.forEach(waitItem => {
+						waitItem.waitAhead -= 1
+					});
+				}
+
+				waitList = { "smallWaitList": waitList }
+			} else if (tableSize === "B") {
+				waitList = rest.mediumWaitList
+				let index = -1;
+				for (let i = 0; i < waitList.length; i++) {
+					if (waitList[i]._id == waitRestaurant._id) {
+						index = i;
+					}
+				}
+				if (index > -1) {
+					waitList.splice(index, 1);
+
+					waitList.forEach(waitItem => {
+						waitItem.waitAhead -= 1
+					});
+				}
+
+				waitList = { "mediumWaitList": waitList }
+			} else if (tableSize === "C") {
+				waitList = rest.largeWaitList
+				let index = -1;
+				for (let i = 0; i < waitList.length; i++) {
+					if (waitList[i]._id == waitRestaurant._id) {
+						index = i;
+					}
+				}
+				if (index > -1) {
+					waitList.splice(index, 1);
+
+					waitList.forEach(waitItem => {
+						waitItem.waitAhead -= 1
+					});
+				}
+
+				waitList = { "largeWaitList": waitList }
+			} else {
+				console.log("UNKNOWN value of waitTable")
+			}
+
+			return Restaurant.findOneAndUpdate({ restaurantName: restName }, {$set: waitList}, {new: true})
+		}
+	}).then((rest) => {
+		if (!rest) {
+			res.status(404).send()
+		} else {
+			// add line up to restaurant
+			const newWaitRestaurant = waitRestaurant
+			newWaitRestaurant._id = waitRestaurant._id
+			newWaitRestaurant.waitTable = newTableSize
+		
+			var waitList;
+			if (newTableSize === "A") {
+				waitList = { "smallWaitList": newWaitRestaurant }
+			} else if (newTableSize === "B") {
+				waitList = { "mediumWaitList": newWaitRestaurant }
+			} else if (newTableSize === "C") {
+				waitList = { "largeWaitList": newWaitRestaurant }
+			}
+		
+			return Restaurant.findOneAndUpdate({ restaurantName: newWaitRestaurant.waitRestaurantName }, {$push: waitList}, {new: true})
+		}
+	}).then((rest) => {
+		if (!rest) {
+			res.status(404).send()
+		} else {
+			return User.findById(id)
+		}
+	}).then((user) => {
+		// update user database
+		if (!user) {
+			res.status(404).redirect('/users/signin')
+		} else {
+			const waitList = user.waitList;
+
+			for (let i = 0; i < waitList.length; i++) {
+				if (waitList[i]._id == waitRestaurant._id) {
+					waitList[i].waitTable = newTableSize;
+				}
+			}
+
+			return User.findByIdAndUpdate(id, {$set: { waitList: waitList }}, {new: true})
+		}
+	}).then((user) => {
+		if (!user) {
+			res.status(404).redirect('/users/signin')
+		} else {
+			res.send()
+		}
+	}).catch((error) => {
+		res.status(500).send(error)
+	})
+});
+
+router.post('/status/changeResvPeople', (req, res) => {
+	// find unique user id
+	const id = req.session.user;
+
+	// Good practise is to validate the id
+	if (!ObjectID.isValid(id)) {
+		return res.status(404).send()
+	}
+
+	const resvRestaurant = req.body.resvRestaurant
+	const newResvPeople = req.body.resvPeople
+
+	// update the number of reservation people for restaurant
+	const restName = resvRestaurant.resvRestaurantName
+	Restaurant.findOne({ restaurantName: restName }).then((rest) => {
+		if (!rest) {
+			res.status(404).send()
+		} else {
+			const reservations = rest.reservations
+
+			for (let i = 0; i < reservations.length; i++) {
+				if (reservations[i]._id == resvRestaurant._id) {
+					reservations[i].resvPeople = newResvPeople;
+				}
+			}
+
+			return Restaurant.findOneAndUpdate({ restaurantName: restName }, {$set: { reservations: reservations }}, {new: true})
+		}
+	}).then((rest) => {
+		if (!rest) {
+			res.status(404).send()
+		} else {
+			// update the number of reservation people for user
+			return User.findById(id)
+		}
+	}).then((user) => {
+		if (!user) {
+			res.status(404).redirect('/users/signin')
+		} else {
+			const reservations = user.reservations;
+
+			for (let i = 0; i < reservations.length; i++) {
+				if (reservations[i]._id == resvRestaurant._id) {
+					reservations[i].resvPeople = newResvPeople;
+				}
+			}
+
+			return User.findByIdAndUpdate(id, {$set: { reservations: reservations }}, {new: true})
+		}
+	}).then((user) => {
+		if (!user) {
+			res.status(404).redirect('/users/signin')
+		} else {
+			res.send()
+		}
+	}).catch((error) => {
+		res.status(500).send(error)
+	})
+})
 
 
 router.get('/:id/picture', (req, res) => {

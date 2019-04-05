@@ -10,13 +10,14 @@
             </div>
             <button type="submit">Confirm Upload</button>
         </div>
-    </form>   
+    </form>  
+     
      <form class="resInfo"  action="/res/info" method="post">
         <div class="resMainInfo">
             <h4>Restaurant Info</h4>
             <div class="resurantName">
                 <strong>Restaurant Name: </strong>
-                <input type="text" name="name" placeholder="{{restaurantName}}"/>
+                <span style="font-size:25px"> {{restaurantName}}</span>
             </div>
             <div class="restaurantAddress">
                 <strong>Address: </strong>
@@ -30,18 +31,18 @@
                 <strong>Type: </strong>
 		        <select name="type">
                     {{#if ischineseFood}} 
-                        <option value ="chineseFood">Chinese Food</option>
-                        <option value ="seaFoodSteak">Sea Food & Steak</option>
-                        <option value="dessert">Dessert</option>
+                        <option value ="Chinese Food">Chinese Food</option>
+                        <option value ="Seafood & Steak">Sea Food & Steak</option>
+                        <option value="Dessert">Dessert</option>
                     {{ else }}
                         {{#if isdessert }} 
-                            <option value="dessert">Dessert</option>
-                            <option value ="chineseFood">Chinese Food</option>
-                            <option value ="seaFoodSteak">Sea Food & Steak</option>
+                            <option value="Dessert">Dessert</option>
+                            <option value ="Chinese Food">Chinese Food</option>
+                            <option value ="Seafood & Steak">Seafood & Steak</option>
                         {{ else }}
-                            <option value ="seaFoodSteak">Sea Food & Steak</option>
-                            <option value ="chineseFood">Chinese Food</option>
-                            <option value="dessert">Dessert</option>
+                            <option value ="Seafood & Steak">Seafood & Steak</option>
+                            <option value ="Chinese Food">Chinese Food</option>
+                            <option value="Dessert">Dessert</option>
                         {{/if }}
                     {{/if }}
 		        </select>
@@ -51,7 +52,7 @@
     </form>   
  	</div>
     <div id="status" class="row">
-        <div class="column" style="background-color:rgb(226, 226, 226); ">
+        <div class="column" style="background-color:rgba(247, 247, 247, 0.8); ">
              <div>
                 <h4>Waiting Status</h4>
                 <p class="tablesize">Small Table:</p>
@@ -64,22 +65,26 @@
                         </div>
                         <div class="content">
                             <p><span> Next Customer:  {{smallCustomer}}</span></p>
-                            <p><span> Phone:  {{smallContactInfo}}</span></p>
+                            <p><span> Email:  {{smallContactInfo}}</span></p>
                         </div>
-                        <div class="nextContainer">
-                              <button id="restaurantUserSmall" class="next"> next </button>
-                        </div>
+                        <form action="/restaurant/next/small" method="POST">
+                            <div class="nextContainer">
+                                <button id="restaurantUserSmall" class="next"> next </button>
+                            </div>
+                        </form>
                     </div>
                     <div class="column-2" style="text-align: center;">
-                        <div>
-                            <label>Name: </label>
-                            <input type="text">
-                        </div>
-                        <div>
-                            <label>Phone: </label>
-                            <input type="text">
-                        </div>
-                    <button id="restaurantUserSmallPlus">Get In Line </button>
+                        <form action='/users/default/small' method="POST">
+                            <div>
+                                <label>Name: </label>
+                                <input type="text" name='userName'>
+                            </div>
+                            <div>
+                                <label>Email: </label>
+                                <input type="text"  name="email">
+                            </div>
+                            <button id="restaurantUserSmallPlus">Get In Line </button>
+                        </form>
                     </div>
                 </div>
 
@@ -93,23 +98,28 @@
                         </div>
                         <div class="content">
                             <p><span> Next Customer:  {{midCustomer}}</span></p>
-                            <p><span> Phone:  {{midContactInfo}}</span></p>
+                            <p><span> Email:  {{midContactInfo}}</span></p>
                         </div>
-                        <div class="nextContainer">
-                              <button id="restaurantUserMedium"class="next"> next </button>
-                        </div>
+                        <form action="/restaurant/next/medium" method="POST"> 
+                            <div class="nextContainer">
+                                <button id="restaurantUserMedium"class="next"> next </button>
+                            </div>
+                        </form>
+                       
                         
                     </div>
                     <div class="column-2" style="text-align: center;"> 
-                        <div>
-                            <label>Name: </label>
-                            <input type="text">
-                        </div>
-                        <div>
-                            <label>Phone: </label>
-                            <input type="text">
-                        </div>
-                    <button id="restaurantUserMidPlus">Get In Line </button>
+                        <form action='/users/default/medium' method="POST">
+                            <div>
+                                <label>Name: </label>
+                                <input type="text" name='userName'>
+                            </div>
+                            <div>
+                                <label>Email: </label>
+                                <input type="text"  name="email">
+                            </div>
+                            <button id="restaurantUserMidPlus">Get In Line </button>
+                        </form>
                     </div>
                 </div>
 
@@ -123,20 +133,23 @@
                         </div>
                         <div class="content">
                             <p><span> Next Customer:  {{largeCustomer}}</span></p>
-                            <p><span> Phone:  {{largeContactInfo}}</span></p>
+                            <p><span> Email:  {{largeContactInfo}}</span></p>
                         </div>
-                         <div class="nextContainer">
-                              <button id="restaurantUserLarge" class="next"> next </button>
-                        </div>
+                        <form action="/restaurant/next/large" method="POST">
+                            <div class="nextContainer">
+                                <button id="restaurantUserLarge" class="next"> next </button>
+                            </div>
+                        </form>
+                         
                     </div>
                     <div class="column-2" style="text-align: center;">
                         <div>
                             <label>Name: </label>
-                            <input type="text">
+                            <input type="text" name='userName'>
                         </div>
                         <div>
-                            <label>Phone: </label>
-                            <input type="text">
+                            <label>Email: </label>
+                            <input type="text" name="email">
                         </div>
                     <button id="restaurantUserLargePlus">Get In Line </button>
                     </div>
@@ -144,36 +157,39 @@
 
             </div>
         </div>
-        <div class="column" style="background-color:rgb(199, 199, 199); margin-left:10px;">
+        <div class="column" style="background-color:rgba(221, 219, 219, 0.8); margin-left:10px;">
             <h4>Current Reservation </h4>
-            <div class="comfirm">
-                <button class="complete"> Complete </button>
-                <button class="Cancel"> Cancel </button>
-            <div>
-             <table class="resTableS">
-                <tr>
-                     <th> </th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Name</th>
-                    <th>Party</th>
-                    <th>contact</th>
-                   
-                </tr>
-                {{#each reservation}}
+            <form action="/res/comfirm" method="POST">
+                <div class="comfirm">
+                    <button type="submit" class="complete"> Complete </button>
+                    <button type="submit" class="Cancel"> Cancel </button>
+                <div>
+                <table class="resTableS">
                     <tr>
-                        <td class='checkbox'>
-                            <input type='checkbox' id='checkbox1' name='checkboox[]'>
-                        </td>
-                        <td>{{this.resvDate}}</td>
-                        <td>{{this.resvTime}}</td>
-                        <td>{{this.resvUserName}}</td>
-                        <td>{{this.resvPeople}}</td>
-                        <td>{{this.resvEmail}}</td>
+                        <th> </th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Name</th>
+                        <th>Party</th>
+                        <th>contact</th>
+                    
                     </tr>
-                {{/each}}
-            </table>
+                    {{#each reservation}}
+                        <tr>
+                            <td class='checkbox'>
+                                <input type='checkbox' id='checkbox' name="id[]" value="{{this._id}}">
+                            </td>
+                            <td>{{this.resvDate}}</td>
+                            <td>{{this.resvTime}}</td>
+                            <td>{{this.resvUserName}}</td>
+                            <td>{{this.resvPeople}}</td>
+                            <td>{{this.resvEmail}}</td>
+                        </tr>
+                    {{/each}}
+                </table>
+            </form>
         </div>
+
     </div>
 
     <script type="text/javascript" src="../js/restaurantDash.js"></script>

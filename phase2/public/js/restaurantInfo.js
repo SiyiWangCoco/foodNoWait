@@ -23,14 +23,14 @@ function waitInLine(e) {
 
 
         if (!smallTable.checked && !mediumTable.checked && !largeTable.checked) {
-            alert('Select a table');
+            swal("", "Please select a table.", "error");
         }
 
         if (smallTable.checked == true) {
             const tableNum = document.querySelector('#smallTableNum');
             let waitNum = parseInt(tableNum.innerHTML);
             waitList.waitTable = "A";
-            waitList.waitAhead = parseInt(tableNum.innerHTML);
+            waitList.waitAhead = parseInt(tableNum.innerHTML) + 1;
             tableNum.innerHTML = waitNum + 1;
         }
 
@@ -38,7 +38,7 @@ function waitInLine(e) {
             const tableNum = document.querySelector('#mediumTableNum');
             let waitNum = parseInt(tableNum.innerHTML);
             waitList.waitTable = "B";
-            waitList.waitAhead = parseInt(tableNum.innerHTML);
+            waitList.waitAhead = parseInt(tableNum.innerHTML) + 1;
             tableNum.innerHTML = waitNum + 1;
         }
 
@@ -46,7 +46,7 @@ function waitInLine(e) {
             const tableNum = document.querySelector('#largeTableNum');
             let waitNum = parseInt(tableNum.innerHTML);
             waitList.waitTable = "C";
-            waitList.waitAhead = parseInt(tableNum.innerHTML);
+            waitList.waitAhead = parseInt(tableNum.innerHTML) + 1;
             tableNum.innerHTML = waitNum + 1;
         }
 
@@ -62,9 +62,9 @@ function waitInLine(e) {
         fetch(request)
         .then((res) => {
             if(res.status === 200) {
-                alert('Line up succeed!');
+                swal("", "Line up succeed!", "success");
             } else {
-                alert('Line up failed.');
+                swal("", "Line up failed.", "error");
             }
         }).catch((error) => {
 	        console.log(error)
@@ -80,7 +80,7 @@ function addComment(e) {
 
         const commentMes = document.querySelector('#message').value;
         if (!commentMes) {
-            alert("Please enter the comment message.")
+            swal("", "Please enter the comment message.", "error");
             return;
         }
         const pathname = window.location.pathname.split("/")
@@ -105,7 +105,7 @@ function addComment(e) {
                 window.location.href = window.location.href;
             } else {
                 if(res.status !== 200) {
-                    alert("Failed to comment")
+                    swal("", "Failed to comment.", "error");
                 }
             }
         }).catch((error) => {
@@ -162,9 +162,9 @@ function book(e) {
         fetch(request)
         .then((res) => {
             if(res.status === 200) {
-                alert('Reservation complete\nDate: ' + date + '\nTime: ' + time + '\nPeople: ' + peopleNum);
+                swal("", 'Reservation complete\nDate: ' + date + '\nTime: ' + time + '\nPeople: ' + peopleNum, "success");
             } else {
-                alert('Reservation failed.');
+                swal("", "Reservation failed.", "error");
             }
         }).catch((error) => {
             console.log(error)

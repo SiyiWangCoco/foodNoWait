@@ -1,0 +1,70 @@
+** We handed this project late for one day, please look at the last commit. **
+
+For phase2, we can now sign up as a restaurant owner, and you need to upload pictures for your restaurant.  Note that you need to have a unique username to sign up.
+
+For convenience, we also include instruction from phase1 below.
+
+We have uploaded 4 examples as the original data in the database, which has following login info as restaurant owner: username: user2 password: user2
+                          username: user3 password: user3
+                          username: user4 password: user4
+                          username: user5 password: user5
+                          username: user6 password: user6
+
+We still has a default user which has <username: user, password: user> and you could log in with that to make a reservation or line up. But feel free to sign up as a new user. We have used encryption for password.
+
+Once log in, you will be directed to homepage (same as phase1, different types of users would be directed to different homepage and we have 3 types of userType, admin, customers, and restaurant owner)
+
+If you are a user, you would be able to search by word, or search by classification for restaurants and then make a reservation, make a comment, or line up.
+
+If you are an admin, you could delete any user or restaurant, ant the information about them will be completely deleted from database.
+
+To add another restaurant to database, simply click on register as restaurant owner at signin page and then you would be ablt to sign up as a restaurant owner, note that you would need a photo to sign up.
+
+We have improved the UI on pages, especially on restaurant owner's homepage.
+
+We can also upload pictures for users and they would be shown while commenting.
+
+Now with the database, all information can be retrived dynamically (including lining up info and reservation info) and they are located at the right corner "waiting & reservation", which you could check your reservation and line up infos.
+
+Restaurant owner can also dynamically check restaurant's lineup status and reservation status, and add to line or pop from line at any time. They could also manage reservation and check out any that has been finished.
+
+
+// Instruction from phase 1
+We have the following pages:
+1. Homepage (index.html): It is our default page, you can look through the popular restaurants on that page, but if you want to search or see more restaurants, you need to log in first.
+2. Sign in page (signin.html): Now the web would link you to sign in page, you could jump to sign up page for signing up -> Step 3. For convenience, you can log in with the following login credentials:
+
+## We have 3 types of account, general customers, restaurant owners, and admin.
+a. General customers: username: user
+		   password: user
+b. Restaurant owners: username: user2
+		   password: user2
+c. Admin: username: admin
+       Password: admin
+
+3. Sign up page (signUp.html): Since we do not require sign up, doing anything and click on submit will jump you again to sign in page -> Step 2.
+
+## After signing in, you will jump to different pages for different types of users
+
+a. As a general customer, 
+
+  users can access their profile by clicking user in header of any page. They can also access their waiting/reservation status by clicking Lining/Reservation in the header of any page. And they can always log out and go back to default home page.
+
+  a.1 Homepage after signing in (userHomePage.html): after signed in, you would be able to search for restaurants by clicking the search button in the middle or "See more..." at the end and you would be linked to a search page. By Clicking on pictures, you can go to the restaurant information page.
+  a.2 Search Page (searchPage.html): You could put in words to search matching restaurants or simply you could press the buttons below to find restaurants that satisfy those classes. Also, clicking on any pictures can link you to the restaurant information page.
+  a.3 Restaurant Information page (<restaurant name>.html): In that page, you could make a reservation by selecting date first and then time slot. You could also line up by selecting the kind of table you want and then click. You would receive a notification if you succeed or not. Additionally, you could also add some comments below.
+  a.4 User Profile page (CustomerProfile.html): You would be able to edit your personal information at that page and also update profile picture. Note that You cannot change your username and account type.
+  a.5 Lining/Reservation status (UserInfoPage.html): This page shows your current lining up and reservation information. We set a timer to simulate the waiting time and when it is your turn, you would be notified. You could also change your table size or cancel you reservation/lining up at any time.
+
+b. As a restaurant owner,
+
+  As a restaurant owner, you could also change your profile, and it is same as general users. But you would no longer have lineUp/reservation button in header. For now, you will not be able to line up or make reservations for a restaurant until you logout by pressing the button in the header and sign in as a general user.
+
+  b.1 Restaurant home page (restaurantUserHomePage.html): It is the default page when you log in as a restaurant owner, you can edit information of your restaurants, manage the lines and reservations. You can see waiting status, when you press the current number, total waiting parties will be updated which means the customers have available seats and customers would be notified. When you press Get in Line, you would be able to add new customers to the line. You could make reservations by filling in basic information and choose a time slot. You could also remove a customers by clicking complete or cancel.
+
+c. As an admin,
+
+  As an admin, you could see all restaurants' information and the waiting status. Also, you would not be able to make reservations or line up until you log out and sign in as a general user. You could change your password by clicking admin in the header.
+
+  c.1 admin Home page (adminHomePage.html): You would be able to remove restaurants here.
+

@@ -86,9 +86,11 @@ app.post('/restaurants',  upload.single('image'), (req, res) => {
 		restaurantUser: restaurant
 	})
 
+	if(restaurant.restaurantName == '' || restaurant.address == ''||restaurant.phone == ''|| user.userName == ''|| user.password==''||user.passwordConfirm==''||user.email=='' ){
+		return res.redirect("signup/restaurant");
+	}
 	if (!validator.isEmail(user.email)) {
-		res.status(400).send("incorrect email format")
-		return;
+		return res.redirect("signup/restaurant");
 	}
 
 	restaurant.restaurantImage.data = fs.readFileSync(req.file.path);
@@ -98,7 +100,7 @@ app.post('/restaurants',  upload.single('image'), (req, res) => {
 		return User.findOne({userName: user.userName})
 	}).then((result) => {
 		if (result) {
-			res.status(400).send("user already existed")
+			return res.redirect("signup/restaurant")
 		} else {
 			return user.save()
 		}
@@ -124,11 +126,11 @@ app.post('/profile/imageupload',  upload.single('file'), (req, res) => {
 	const contentType = req.file.mimetype;
 	const profilePic = { data, contentType }
 
-	User.findByIdAndUpdate(id, {$set: {profilePic: profilePic}}, {new: true}).then((user) => {
+	User.findByIdAndUpdate(id, {$set: {profilePic: profilePic, having: true}}, {new: true}).then((user) => {
 		if (!user) {
 			res.status(404).send()
 		} else {
-			res.send(user.profilePic)
+			res.redirect('/users/profile')
 		}
 	}).catch((error) => {
 		res.status(400).send(error)
@@ -186,7 +188,7 @@ app.post('/res/info', (req, res) => {
 		return res.status(404).send()
 	}
   
-	let name = req.body.name;
+	let name = '';
 	let address = req.body.address;
 	let phone = req.body.phone;
 	let type = req.body.type;
@@ -221,12 +223,49 @@ app.post('/res/info', (req, res) => {
 		if (!user) {
 			res.status(404).send()
 		} else {
-			req.redirect('/restaurant/homepage');
+			res.redirect('/restaurant/homepage');
 		}
 	}).catch((error) => {
 		res.status(400).send(error)
 	})
 
+})
+
+
+app.post('/res/comfirm', (req,res) => {
+	// find unique user id
+	const id = req.session.user;
+
+	if (!id) {
+		return res.redirect('/users/signin')
+	}
+
+	// Good practise is to validate the id
+	if (!ObjectID.isValid(id)) {
+		return res.status(404).send()
+	}
+
+	req.body.id.forEach((resvId) => {
+		User.findById(id).then((user) => {
+			if (user) {
+				return Restaurant.findOneAndUpdate(
+					{restaurantName: user.restaurantUser.restaurantName},
+					{$pull: {'reservations': {"_id": resvId}}})
+			}
+		}).then((result) => {
+			if (result) {
+				return User.find()
+			}
+		}).then((result) => {
+			if (result) {
+				result.forEach((user) => {
+					User.findByIdAndUpdate(user._id, {$pull: {'reservations': {"_id": resvId}}}).then((result) => {})
+				})
+				res.redirect("/restaurant/homepage")
+			}
+		}).catch((error) => {
+		})
+	})
 })
 
 

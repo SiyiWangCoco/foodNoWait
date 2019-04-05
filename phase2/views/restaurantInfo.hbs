@@ -1,19 +1,29 @@
 {{> headerUser }}
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 <div id="restaurantInfo">
+	<span id="resScore">
+		<span class="fa fa-star {{check1}}"></span>
+		<span class="fa fa-star {{check2}}"></span>
+		<span class="fa fa-star {{check3}}"></span>
+		<span class="fa fa-star {{check4}}"></span>
+		<span class="fa fa-star {{check5}}"></span>
+	</span>
 	<span id="resName">
 		<strong>{{resName}}</strong>
 	</span>
 	<span id="resAdd">{{resAdd}}</span>
 	<span id="phoneNumber">{{resPhone}}</span>
-	<span id="resScore">{{resStar}}</span>
+	
 </div>
 
 <div id="resImage">
 	<img class="image" src={{resImg}}>
 </div>
 
-<div id="reserInfo">
-	<div id="reservation">
+<div id="reserInfo" class="row-1">
+	<div id="reservation" class="columna" style="background-color:rgba(255, 255, 255, 0.6);border-top-left-radius:30px; border-bottom-left-radius:30px">
 		<div id="reserTitle">Reservation: </div>
 		<div id="reserDate">
 			<input type="date" id="date" value="2019-04-04">
@@ -37,7 +47,12 @@
    		</div>
 		<br>
 		<div id="reserTime">
+			<button class="time">12:00</button>	
+			<button class="time">13:00</button>	
 			<button class="time">14:00</button>	
+			<button class="time">15:00</button>	
+		
+			<button class="time">17:00</button>	
 			<button class="time">18:00</button>	
 			<button class="time">19:00</button>	
 			<button class="time">20:00</button>	
@@ -45,7 +60,7 @@
 		</div>
 	</div>
 
-	<div id="line">
+	<div id="line" class='columna' style="border-left: 3px solid rgba(27, 27, 27,0.8); background-color:rgba(255, 255, 255, 0.8);border-top-right-radius:30px; border-bottom-right-radius:30px" >
 		<div id="lineTitle">Current In Line</div>
 		<div id="lineInfo">
 			<span class="tableInfo">
@@ -54,12 +69,12 @@
 				<input id="small" type="radio" name="table">
 			</span>
 			<span class="tableInfo">
-				Medium table(3-5)
+				Medium table(3-4)
 				<div id="mediumTableNum">{{mediumWaitList}}</div>
 				<input id="medium" type="radio" name="table">
 			</span>
 			<span class="tableInfo">
-				Large table(6+)
+				Large table(5+)
 				<div id="largeTableNum">{{largeWaitList}}</div>
 				<input id="large" type="radio" name="table">
 			</span>
@@ -76,13 +91,22 @@
 	<div id="commentsHis">
 		{{#each comments}}
 		<div class="userComment">
+			{{#if this.having}} 
+				<div id="previewuser" style="background-image: url('/restaurant/{{this.restId}}/{{this._id}}/picture'); border:none"></div>
+			{{ else }}
+				<div id="previewuser" style="background-image: url('/picture/upload.png"></div>
+			{{/if }}
+				
+            
+			
 			<span class="user">{{this.commentUserName}}: </span>
 			<span class="commentText">{{this.commentInfo}}</span>
 		</div>
 		{{/each}}
 	</div>
+	
 	<div id="leaveComment">
-		<input id="message" type="text" placeholder="Leave Your Comments HERE!!!!">
+		<input id="message" type="text" placeholder="Leave your comments here...">
 		<br>
 		<input id="submitButton" type="submit" value="Submit">
 	</div>

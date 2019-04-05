@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { ObjectID } = require('mongodb')
 
 
 const ReservationSchema = new mongoose.Schema({
@@ -30,7 +31,8 @@ const ReservationSchema = new mongoose.Schema({
     resvEmail: {
         type: String,
         trim: true
-    }
+    },
+    resvId: ObjectID
 });
 
 

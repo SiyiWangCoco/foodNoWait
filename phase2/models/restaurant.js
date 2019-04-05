@@ -5,7 +5,16 @@ const { ObjectID } = require('mongodb')
 
 const CommentSchema = new mongoose.Schema({
 	commentUserName: String,
-	commentInfo: String
+	commentInfo: String,
+    userImage: {
+        data: Buffer, 
+        contentType: String 
+    },
+    restId: String,
+    having: {
+        type: Boolean,
+        default: false
+    }
 });
 
 const RestaurantSchema = new mongoose.Schema({
@@ -29,10 +38,6 @@ const RestaurantSchema = new mongoose.Schema({
         contentType: String 
     },
     description: String,
-  	star: {
-        type: Number,
-        default: 0
-    },
     seatAvailable: {
         type: Boolean,
         default: true,

@@ -14,8 +14,8 @@ function signUp(e) {
 		const email = document.querySelector("#emailInput").value;
 		const firstName = document.querySelector("#firstNameInput").value;
 		const lastName = document.querySelector("#lastNameInput").value;
-		const phoneNumber = parseInt(document.querySelector("#phoneNumberInput").value);
-		const age = parseInt(document.querySelector("#ageInput").value);
+		const phoneNumber = document.querySelector("#phoneNumberInput").value;
+		const age = document.querySelector("#ageInput").value;
 		const genderSelect = document.querySelector("#genderSelect");
 		if (genderSelect.options[genderSelect.selectedIndex]) {
 			gender = genderSelect.options[genderSelect.selectedIndex].value;
@@ -35,7 +35,7 @@ function signUp(e) {
 	    }
 
 	    if (passwordConfirm !== password) {
-	        alert("password confirmation does not match");
+			swal("", "password confirmation does not match", "error");
 	        return;
 	    }
 
@@ -51,24 +51,25 @@ function signUp(e) {
 	    fetch(request)
 	    .then(function(res) {
 	        if (res.status === 200) {
-	            console.log('User has signed up')
-	            alert("You have signup")
+				console.log('User has signed up')
+				swal("", "You have signup.", "success");
+	            setTimeout(function() {window.location.href = "/users/signin"}, 1500)
 	        } else {
 	        	const re = /\S+@\S+\.\S+/;
 	            if (!userName) {
-	            	alert("missing username");
+					swal("", "missing username", "error");
 	            } else if (!password) {
-	            	alert("missing password");
+					swal("", "missing password", "error");
 	            } else if (password.length < 4) {
-	            	alert("password must be at least 4 characters")
+					swal("", "password must be at least 4 characters", "error");
 	            } else if (!passwordConfirm) {
-	            	alert("Please confirm your password.")
+					swal("", "Please confirm your password.", "error");
 	            } else if (!email) {
-	            	alert("missing email");
+					swal("", "missing email", "error");
 	            } else if (!re.test(email)) {
-	            	alert("It is not a valid email")
+					swal("", "It is not a valid email.", "error");
 	            } else {
-	            	alert("User existed")
+					swal("", "User existed", "error");
 	            }
 	        }
 	    }).catch((error) => {

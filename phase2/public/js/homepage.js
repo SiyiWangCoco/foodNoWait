@@ -44,12 +44,10 @@ function loadRestaurants(restaurants) {
 		const text1 = document.createElement('p');
 		text1.innerHTML = restaurant.restaurantName + ' ';
 		const text1Span = document.createElement('span');
-		if (restaurant.numOfParties > 1) {
-			text1Span.innerHTML = restaurant.numOfParties + ' parties ahead';
-		} else if (restaurant.numOfParties == 1) {
-			text1Span.innerHTML = restaurant.numOfParties + ' party ahead';
-		} else {
+		if (restaurant.smallWaitList == 0 || restaurant.mediumWaitList == 0 || restaurant.largeWaitList == 0) {
 			text1Span.innerHTML = 'seating available';
+		} else {
+			text1Span.innerHTML = Math.max(restaurant.smallWaitList.length, restaurant.mediumWaitList.length, restaurant.largeWaitList.length) + ' parties ahead';
 		}
 		text1.appendChild(text1Span);
 		const text2 = document.createElement('p');

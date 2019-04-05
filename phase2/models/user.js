@@ -37,7 +37,7 @@ const UserSchema = new mongoose.Schema({
     	trim: true
     },
     age: {
-    	type: Number,
+    	type: String,
     	trim: true
     },
     userType: {
@@ -46,7 +46,7 @@ const UserSchema = new mongoose.Schema({
     	trim: true
     },
   	phone: {
-  		type: Number,
+  		type: String,
   		trim: true
   	},
   	email: {
@@ -59,6 +59,10 @@ const UserSchema = new mongoose.Schema({
   			message: 'Not valid email'
   		}
 	  },
+    having: {
+      type: Boolean,
+      default: false
+    },
     restaurantUser: RestaurantSchema, //own restaurant id 
   	description: String,
     reservations: [ReservationSchema],

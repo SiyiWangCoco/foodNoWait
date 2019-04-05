@@ -13,17 +13,15 @@ function renderProfile() {
 			return res.json();
 		}
 	}).then((data) => {
-		console.log("xinyi", data)
-
-		const userName = data.userName
-		const accountType = data.accountType
-		const firstName = data.firstName
-		const lastName = data.lastName
-		const email = data.email
-		const gender = data.gender
-		const age = data.age
-		const phone = data.phone
-		const description = data.description
+		var userName = data.userName
+		var accountType = data.accountType
+		var firstName = data.firstName
+		var lastName = data.lastName
+		var email = data.email
+		var gender = data.gender
+		var age = data.age
+		var phone = data.phone
+		var description = data.description
 	
 		document.querySelector('#username').setAttribute('value', userName)
 		document.querySelector('#accountType').setAttribute('value', accountType)
@@ -96,7 +94,6 @@ function changeInfo() {
 		phone: phone,
 		description: description,
 	}
-	console.log("client", data)
 
 	const request = new Request('/users/profile/edit', {
 		method: 'POST', 
@@ -109,9 +106,9 @@ function changeInfo() {
 	
 	fetch(request).then((res) => {
 		if (res.status === 200) {
-			alert("Successfully updated profile!");
+			swal("", "Successfully updated profile!", "success");
 		} else {
-			alert("Oops! An error occurred. Failed to update profile.")
+			swal("", "Oops! An error occurred. Failed to update profile.", "error");
 		}
 
 		renderProfile();
@@ -146,13 +143,13 @@ function changePwd() {
 	
 	fetch(request).then((res) => {
 		if (res.status === 200) {
-			alert("Successfully updated password!");
+			swal("", "Successfully updated password!", "success");
 		} else if (res.status == 300) {
-			alert("Password must be at least 4 characters.")
+			swal("", "Password must be at least 4 characters.", "error");
 		} else if (res.status === 400) {
-			alert('Cannot change password! Old password does not match record or new password does not match the confirm password.')
+			swal("", "Cannot change password! Old password does not match record or new password does not match the confirm password.", "error");
 		} else {
-			alert("Oops! An error occurred. Failed to update password.")
+			swal("", "Oops! An error occurred. Failed to update password.", "error");
 		}
 
 		renderProfile();

@@ -25,7 +25,7 @@ function userLogin(e) {
         .then(function(res) {
             console.log(res.status)
             if (res.status !== 200) {
-                alert("Login failed! Wrong user credentials, please check.")
+                swal("", "Login failed! Wrong user credentials, please check.", "error");
             }
         }).catch((error) => {
             console.log(error)

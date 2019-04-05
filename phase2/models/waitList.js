@@ -3,8 +3,12 @@ const { ObjectID } = require('mongodb')
 
 const WaitListSchema = new mongoose.Schema({
 	waitUserName: String,
-	waitUserPhone: Number,
-	waitRestaurantName: String,
+	waitUserEmail: String,
+	waitRestaurantName: {
+		type: String,
+		trim: true
+	},
+	waitId: ObjectID,
 	waitTable: String,
 	waitAhead: Number
 });

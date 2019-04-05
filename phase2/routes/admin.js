@@ -44,27 +44,144 @@ router.get('/', (req, res)  => {
                     restaurant : user.restaurantUser.restaurantName
                 }
                 ownersList.push(o)
-
-                // restaurant
-                const r = {
-                    restaurantName: user.restaurantUser.restaurantName,
-                    owner: user.userName,
-                    restaurantType: user.restaurantUser.restaurantType,
-                    reservationNum: user.restaurantUser.reservations.length,
-                    waitListNum: user.restaurantUser.smallWaitList.length
-                     + user.restaurantUser.mediumWaitList.length
-                     + user.restaurantUser.largeWaitList.length
-                }
-                restaurantsList.push(r)
             }
+        }
+    }).catch(error => console.log(error))
+
+    // restaurant
+    Restaurant.find().then((restaurants) => {
+        for (let j in restaurants) {
+            const rest = restaurants[j]
+            const r = {
+                restaurantName: rest.restaurantName,
+                owner: rest.userName,
+                restaurantType: rest.restaurantType,
+                reservationNum: rest.reservations.length,
+                waitListNum: rest.smallWaitList.length
+                    + rest.mediumWaitList.length
+                    + rest.largeWaitList.length
+            }
+            restaurantsList.push(r)
         }
     }).catch(error => console.log(error))
 
     res.render('admin', {
         customers: customersList,
         owners: ownersList,
-        restaurants: restaurantsList
+        restaurants: restaurantsList,
+       
+        user: 'admin'
     })
+})
+
+
+router.delete('/restaurant', (req, res) => {
+    const name = req.body.name
+
+    User.find().then((users) =>{
+        for (let i in users) {
+            const u = users[i]
+
+            //remove the reservations from user
+            for (let j = u.reservations.length - 1; j >= 0; j--) {
+                const reser = u.reservations[j]
+                if (reser.resvRestaurantName === name) {
+                    u.reservations.remove(reser)
+                }
+            }
+
+            //remove the waitlist from user
+            for (let j = u.waitList.length - 1; j >= 0; j--) {
+                const wait = u.waitList[j]
+                if (wait.waitRestaurantName === name) {
+                    u.waitList.remove(wait)
+                }
+            }
+
+
+            u.save().then((u) => {}, (error) => {
+                res.status(400).send(error)
+            })
+
+        }
+    }).catch((error) => {
+        log(error)
+        res.status(500).send(error)
+    })
+
+
+    Restaurant.findOneAndDelete({restaurantName: name}).then((rest) =>{
+        if (!rest) {
+			res.status(404).send()
+		} else {
+			res.status(200).send()
+		}
+	}).catch((error) => {
+        log(error)
+		res.status(500).send(error)
+	})
+
+})
+
+
+router.delete('/user', (req, res) => {
+    const userName = req.body.userName
+
+    Restaurant.find().then((restaurants) => {
+        for (let i in restaurants) {
+            const rest = restaurants[i]
+
+            // remove reservations from restaurant
+            for (let j = rest.reservations.length - 1; j >= 0; j--) {
+                const reser = rest.reservations[j]
+                if (reser.resvUserName === userName) {
+                    rest.reservations.remove(reser)
+                }
+            }
+
+            // remove waitlist from restaurant
+            for (let j = rest.smallWaitList.length - 1; j >= 0; j--) {
+                const wait = rest.smallWaitList[j]
+                if (wait.waitUserName === userName) {
+                    rest.smallWaitList.remove(wait)
+                }
+            }
+
+            for (let j = rest.mediumWaitList.length - 1; j >= 0; j--) {
+                const wait = rest.mediumWaitList[j]
+                if (wait.waitUserName === userName) {
+                    rest.mediumWaitList.remove(wait)
+                }
+            }
+
+            for (let j = rest.largeWaitList.length - 1; j >= 0; j--) {
+                const wait = rest.largeWaitList[j]
+                if (wait.waitUserName === userName) {
+                    rest.largeWaitList.remove(wait)
+                }
+            }
+
+            // save
+            rest.save().then((r) => {}, (error) => {
+                log(error)
+                res.status(400).send(error)
+            })
+        }
+    }).catch((error) => {
+        log(error)
+        res.status(500).send(error)
+    })
+
+    User.findOneAndDelete({userName: userName}).then((user) =>{
+        if (!user) {
+			res.status(404).send()
+		} else {
+			res.status(200).send()
+		}
+	}).catch((error) => {
+        log(error)
+		res.status(500).send(error)
+	})    
 })
 
 
