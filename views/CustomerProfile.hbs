@@ -25,9 +25,12 @@
         <div class="detailInfo">
             <p><label>Username:</label><input type="text" disabled="disabled" id="username"></p>
             <p><label>Account Type:</label><input type="text" disabled="disabled" id="accountType"></p>
+            {{#if iscustomer}} 
             <p><label>First Name:</label><input type="text" id="firstName"></p>
             <p><label>Last Name:</label><input type="text" id="lastName"></p>
+            {{/if }}
             <p><label>Email:</label><input type="text" id="email"></p>
+            {{#if iscustomer}}
             <p>
                 <label>Gender:</label>
                 <select id="gender">
@@ -43,6 +46,7 @@
             <div class="btnBox">
                 <input type="submit" id="infoButton" value="Submit" class="textBtn">
             </div>
+            {{/if }}
             <h2 class="title-b">Change Password</h2>
             <p><label>Old Password:</label><input type="password" id="oldPassword"></p>
             <p><label>New Password:</label><input type="password" id="newPassword"></p>
