@@ -719,6 +719,7 @@ router.post('/status/changeTableSize', (req, res) => {
 
 	const waitRestaurant = req.body.waitRestaurant
 	const newTableSize = req.body.tableSize
+	let newWaitAhead;
 
 	// remove line up from restaurant
 	const restName = waitRestaurant.waitRestaurantName
@@ -829,13 +830,19 @@ router.post('/status/changeTableSize', (req, res) => {
 			const newWaitRestaurant = waitRestaurant
 			newWaitRestaurant._id = waitRestaurant._id
 			newWaitRestaurant.waitTable = newTableSize
-		
+
 			var waitList;
 			if (newTableSize === "A") {
+				newWaitRestaurant.waitAhead = rest.smallWaitList.length + 1
+				newWaitAhead = rest.smallWaitList.length + 1
 				waitList = { "smallWaitList": newWaitRestaurant }
 			} else if (newTableSize === "B") {
+				newWaitRestaurant.waitAhead = rest.mediumWaitList.length + 1
+				newWaitAhead = rest.smallWaitList.length + 1
 				waitList = { "mediumWaitList": newWaitRestaurant }
 			} else if (newTableSize === "C") {
+				newWaitRestaurant.waitAhead = rest.largeWaitList.length + 1
+				newWaitAhead = rest.largeWaitList.length + 1
 				waitList = { "largeWaitList": newWaitRestaurant }
 			}
 		
@@ -857,6 +864,7 @@ router.post('/status/changeTableSize', (req, res) => {
 			for (let i = 0; i < waitList.length; i++) {
 				if (waitList[i]._id == waitRestaurant._id) {
 					waitList[i].waitTable = newTableSize;
+					waitList[i].waitAhead = newWaitAhead;
 				}
 			}
 
