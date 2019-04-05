@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css"/>
 </head>
 <body>
+    {{#if iscustomer}}
     <form class="imgform" enctype="multipart/form-data" action="/profile/imageupload" method="post">
         <div class="container">
             <div id="preview" style="background-image: url({{imageAdd}}); border:none">
@@ -22,6 +23,7 @@
             <button type="submit">Confirm Upload</button>
         </div>
     </form>
+    {{/if }}
         <div class="detailInfo">
             <p><label>Username:</label><input type="text" disabled="disabled" id="username"></p>
             <p><label>Account Type:</label><input type="text" disabled="disabled" id="accountType"></p>
