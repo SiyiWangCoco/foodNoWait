@@ -292,7 +292,7 @@ function changeTableSize(obj) {
 }
 
 function changeResvPeople(obj) {
-	const input = $('.changeResvPeople').val()
+	const input = $(obj).parent().children(':first-child').val();
 
 	if (input != '') {
 		const resvPeople = parseInt(input)
