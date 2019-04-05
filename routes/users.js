@@ -137,7 +137,7 @@ router.post('/default/medium', (req, res) => {
 	}).then((restaurant) => {
 		if (restaurant) {
 			restaurantelem = restaurant;
-			waitList._id = restaurant.smallWaitList[restaurant.mediumWaitList.length - 1]._id
+			waitList._id = restaurant.mediumWaitList[restaurant.mediumWaitList.length - 1]._id
 			return User.findByIdAndUpdate(userId, {$push: {"waitList":waitList}})
 		}
 	}).then((user) => {
@@ -209,7 +209,7 @@ router.post('/default/large', (req, res) => {
 	}).then((restaurant) => {
 		if (restaurant) {
 			restaurantelem = restaurant;
-			waitList._id = restaurant.smallWaitList[restaurant.largeWaitList.length - 1]._id
+			waitList._id = restaurant.largeWaitList[restaurant.largeWaitList.length - 1]._id
 			return User.findByIdAndUpdate(userId, {$push: {"waitList":waitList}})
 		}
 	}).then((user) => {
