@@ -838,7 +838,7 @@ router.post('/status/changeTableSize', (req, res) => {
 				waitList = { "smallWaitList": newWaitRestaurant }
 			} else if (newTableSize === "B") {
 				newWaitRestaurant.waitAhead = rest.mediumWaitList.length + 1
-				newWaitAhead = rest.smallWaitList.length + 1
+				newWaitAhead = rest.mediumWaitList.length + 1
 				waitList = { "mediumWaitList": newWaitRestaurant }
 			} else if (newTableSize === "C") {
 				newWaitRestaurant.waitAhead = rest.largeWaitList.length + 1
