@@ -53,20 +53,21 @@ function renderProfile() {
 
 // upload profile picture
 var eleFile = document.querySelector('#file');
-
-eleFile.addEventListener('change', function() {
-	var file = this.files[0];
-	           
-	// identify it is of type image                
-	if (file.type.indexOf("image") == 0) {
-		var reader = new FileReader();
-		reader.readAsDataURL(file);           
-		reader.onload = function(e) {
-			var newUrl = this.result;
-			document.querySelector('#preview').style.backgroundImage = 'url(' + newUrl + ')';
-		};
-	}
-});
+if (eleFile) {
+	eleFile.addEventListener('change', function() {
+		var file = this.files[0];
+		           
+		// identify it is of type image                
+		if (file.type.indexOf("image") == 0) {
+			var reader = new FileReader();
+			reader.readAsDataURL(file);           
+			reader.onload = function(e) {
+				var newUrl = this.result;
+				document.querySelector('#preview').style.backgroundImage = 'url(' + newUrl + ')';
+			};
+		}
+	});
+}
 
 
 
