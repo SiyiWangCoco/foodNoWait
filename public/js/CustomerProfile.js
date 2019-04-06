@@ -25,21 +25,22 @@ function renderProfile() {
 	
 		document.querySelector('#username').setAttribute('value', userName)
 		document.querySelector('#accountType').setAttribute('value', accountType)
-		document.querySelector('#firstName').setAttribute('value', firstName)
-		document.querySelector('#lastName').setAttribute('value', lastName)
 		document.querySelector('#email').setAttribute('value', email)
-		document.querySelector('#age').setAttribute('value', age)
-		document.querySelector('#phone').setAttribute('value', phone)
-		document.querySelector('#description').setAttribute('value', description)
-	
-		if (gender == "female") {
-			document.querySelector('#genderF').setAttribute('selected', "selected")
-		} else if (gender == "male") {
-			document.querySelector('#genderM').setAttribute('selected', "selected")
-		} else if (gender == "other") {
-			document.querySelector('#genderO').setAttribute('selected', "selected")
-		} else {
-			document.querySelector('#genderU').setAttribute('selected', "selected")
+		if (accountType === "customer") {
+			document.querySelector('#firstName').setAttribute('value', firstName)
+			document.querySelector('#lastName').setAttribute('value', lastName)
+			document.querySelector('#age').setAttribute('value', age)
+			document.querySelector('#phone').setAttribute('value', phone)
+			document.querySelector('#description').setAttribute('value', description)
+			if (gender == "female") {
+				document.querySelector('#genderF').setAttribute('selected', "selected")
+			} else if (gender == "male") {
+				document.querySelector('#genderM').setAttribute('selected', "selected")
+			} else if (gender == "other") {
+				document.querySelector('#genderO').setAttribute('selected', "selected")
+			} else {
+				document.querySelector('#genderU').setAttribute('selected', "selected")
+			}
 		}
 
 		document.querySelector('#oldPassword').value = ''
